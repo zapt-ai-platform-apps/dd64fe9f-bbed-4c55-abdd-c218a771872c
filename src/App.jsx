@@ -28,7 +28,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="h-full flex flex-col">
       <div className="flex-grow">
         {!session && !userType && <UserTypeSelection selectUserType={selectUserType} />}
         {!session && userType && <AuthSection setUserType={setUserType} />}
@@ -40,7 +40,7 @@ export default function App() {
           href="https://www.zapt.ai"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-500"
+          className="text-blue-500 cursor-pointer"
         >
           Made on ZAPT
         </a>
