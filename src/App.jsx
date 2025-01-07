@@ -7,7 +7,7 @@ import AuthSection from './components/AuthSection';
 
 export default function App() {
   const [session, setSession] = useState(null);
-  const [userType, setUserType] = useState(''); // 'client' or 'professional'
+  const [userType, setUserType] = useState(() => localStorage.getItem('userType') || '');
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -16,6 +16,10 @@ export default function App() {
 
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
+      if (!session) {
+        setUserType('');
+        localStorage.removeItem('userType');
+      }
     });
 
     return () => {
@@ -25,6 +29,7 @@ export default function App() {
 
   const selectUserType = (type) => {
     setUserType(type);
+    localStorage.setItem('userType', type);
   };
 
   return (

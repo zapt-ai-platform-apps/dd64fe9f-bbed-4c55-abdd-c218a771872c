@@ -32,5 +32,7 @@ export const signOutUser = async () => {
   const { error } = await supabase.auth.signOut();
   if (error) {
     console.error(error);
+  } else {
+    localStorage.removeItem('userType');
   }
 };
