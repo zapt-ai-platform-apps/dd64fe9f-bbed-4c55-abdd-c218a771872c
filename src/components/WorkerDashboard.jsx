@@ -1,48 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import { supabase } from '../supabaseClient';
+import { fetchStatus, updateStatus, signOutUser } from '../services/supabaseService';
+import { generateShareLink, copyToClipboard } from '../utils/linkUtils';
 
 export default function WorkerDashboard({ session }) {
   const [status, setStatus] = useState('');
   const [loading, setLoading] = useState(false);
+  const [shareLink, setShareLink] = useState('');
 
   useEffect(() => {
-    fetchStatus();
-  }, []);
+    fetchStatus(session.user.id, setStatus, setLoading);
+    setShareLink(generateShareLink(session.user.id));
+  }, [session.user.id]);
 
-  const fetchStatus = async () => {
+  const handleUpdateStatus = async () => {
     setLoading(true);
-    console.log('Fetching status...');
-    const { data, error } = await supabase
-      .from('statuses')
-      .select('status')
-      .eq('user_id', session.user.id)
-      .single();
-
-    if (data) {
-      setStatus(data.status);
-    } else if (error && error.code !== 'PGRST116') {
-      console.error(error);
-    }
+    await updateStatus(session.user.id, status);
     setLoading(false);
   };
 
-  const updateStatus = async () => {
-    setLoading(true);
-    console.log('Updating status...');
-    const { error } = await supabase.from('statuses').upsert({
-      user_id: session.user.id,
-      status,
-      updated_at: new Date(),
-    });
-
-    if (error) {
-      console.error(error);
-    }
-    setLoading(false);
+  const handleCopyToClipboard = () => {
+    copyToClipboard(shareLink);
+    alert('Share link copied to clipboard!');
   };
 
-  const signOut = async () => {
-    await supabase.auth.signOut();
+  const handleSignOut = async () => {
+    await signOutUser();
   };
 
   return (
@@ -58,16 +40,33 @@ export default function WorkerDashboard({ session }) {
           placeholder="e.g., Running 10 minutes late"
         />
       </div>
+      <div className="mb-4">
+        <label className="block text-gray-700 mb-2">Your share link:</label>
+        <div className="flex items-center">
+          <input
+            type="text"
+            value={shareLink}
+            readOnly
+            className="w-full px-3 py-2 border border-gray-300 rounded-l-md box-border"
+          />
+          <button
+            onClick={handleCopyToClipboard}
+            className="bg-blue-500 text-white px-4 py-2 rounded-r-md cursor-pointer"
+          >
+            Copy
+          </button>
+        </div>
+      </div>
       <div className="flex space-x-2">
         <button
-          onClick={updateStatus}
+          onClick={handleUpdateStatus}
           className="bg-blue-500 text-white px-4 py-2 rounded-md cursor-pointer"
           disabled={loading}
         >
           {loading ? 'Updating...' : 'Update Status'}
         </button>
         <button
-          onClick={signOut}
+          onClick={handleSignOut}
           className="bg-gray-500 text-white px-4 py-2 rounded-md cursor-pointer"
         >
           Sign Out
