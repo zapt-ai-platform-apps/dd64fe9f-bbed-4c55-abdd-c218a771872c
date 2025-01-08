@@ -17,3 +17,11 @@ export const favorites = pgTable(
     pk: primaryKey(table.clientId, table.professionalId),
   })
 );
+
+export const profiles = pgTable('profiles', {
+  userId: uuid('user_id').primaryKey(),
+  name: text('name').notNull(),
+  bio: text('bio'),
+  createdAt: timestamp('created_at').defaultNow(),
+  updatedAt: timestamp('updated_at').defaultNow(),
+});

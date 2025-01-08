@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { supabase } from './supabaseClient';
 import WorkerDashboard from './components/WorkerDashboard';
 import ClientDashboard from './components/ClientDashboard';
-import UserTypeSelection from './components/UserTypeSelection';
 import AuthSection from './components/AuthSection';
+import RoleSwitcher from './components/RoleSwitcher';
 
 export default function App() {
   const [session, setSession] = useState(null);
-  const [userType, setUserType] = useState(() => localStorage.getItem('userType') || '');
+  const [userType, setUserType] = useState('professional');
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -16,10 +16,6 @@ export default function App() {
 
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
-      if (!session) {
-        setUserType('');
-        localStorage.removeItem('userType');
-      }
     });
 
     return () => {
@@ -29,16 +25,19 @@ export default function App() {
 
   const selectUserType = (type) => {
     setUserType(type);
-    localStorage.setItem('userType', type);
   };
 
   return (
-    <div className="h-full flex flex-col">
+    <div className="min-h-screen flex flex-col">
       <div className="flex-grow">
-        {!session && !userType && <UserTypeSelection selectUserType={selectUserType} />}
-        {!session && userType && <AuthSection setUserType={setUserType} />}
-        {session && userType === 'professional' && <WorkerDashboard session={session} />}
-        {session && userType === 'client' && <ClientDashboard session={session} />}
+        {!session && <AuthSection />}
+        {session && (
+          <>
+            <RoleSwitcher userType={userType} selectUserType={selectUserType} />
+            {userType === 'professional' && <WorkerDashboard session={session} />}
+            {userType === 'client' && <ClientDashboard session={session} />}
+          </>
+        )}
       </div>
       <footer className="p-4 text-center">
         <a
