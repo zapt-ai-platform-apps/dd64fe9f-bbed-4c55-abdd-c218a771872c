@@ -2,8 +2,20 @@ import { authenticateUser } from './_apiUtils';
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 import { profiles } from '../drizzle/schema.js';
+import * as Sentry from '@sentry/node';
 
 export default async function handler(req, res) {
+  Sentry.init({
+    dsn: process.env.VITE_PUBLIC_SENTRY_DSN,
+    environment: process.env.VITE_PUBLIC_APP_ENV,
+    initialScope: {
+      tags: {
+        type: 'backend',
+        projectId: process.env.VITE_PUBLIC_APP_ID
+      }
+    }
+  });
+
   if (req.method !== 'PUT') {
     res.status(405).json({ error: 'Method Not Allowed' });
     return;
@@ -30,7 +42,7 @@ export default async function handler(req, res) {
 
     res.status(200).json({ message: 'Profile updated' });
   } catch (error) {
-    console.error(error);
+    Sentry.captureException(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }
