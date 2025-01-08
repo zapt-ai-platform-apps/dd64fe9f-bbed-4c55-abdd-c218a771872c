@@ -30,7 +30,7 @@ export default async function handler(req, res) {
 
     res.status(200).json({ message: 'Profile updated' });
   } catch (error) {
-    Sentry.captureException(error);
+    console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }

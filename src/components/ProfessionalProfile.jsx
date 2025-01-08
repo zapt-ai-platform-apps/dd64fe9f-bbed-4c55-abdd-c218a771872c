@@ -1,33 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 
 export default function ProfessionalProfile() {
   const [profile, setProfile] = useState(null);
   const [status, setStatus] = useState('');
   const [loading, setLoading] = useState(false);
-  const location = useLocation();
 
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
+    const params = new URLSearchParams(window.location.search);
     const professionalId = params.get('professionalId');
     if (professionalId) {
       fetchProfile(professionalId);
       fetchStatus(professionalId);
     }
-  }, [location]);
+  }, []);
 
   const fetchProfile = async (professionalId) => {
-    const { data } = await fetch(`/api/getProfile?professionalId=${professionalId}`).then((res) =>
-      res.json()
-    );
+    const response = await fetch(`/api/getProfile?professionalId=${professionalId}`);
+    const data = await response.json();
     setProfile(data);
   };
 
   const fetchStatus = async (professionalId) => {
     setLoading(true);
-    const { data } = await fetch(`/api/getStatus?professionalId=${professionalId}`).then((res) =>
-      res.json()
-    );
+    const response = await fetch(`/api/getStatus?professionalId=${professionalId}`);
+    const data = await response.json();
     setStatus(data.status);
     setLoading(false);
   };
