@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import * as Sentry from '@sentry/browser';
 import { getStatus, getProfile, updateStatus, updateProfile } from '../services/workerDashboardService';
 
 export default function useWorkerDashboard(session) {
@@ -9,15 +10,20 @@ export default function useWorkerDashboard(session) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const fetchedStatus = await getStatus(session.user.id);
-      if (fetchedStatus !== null) {
-        setStatus(fetchedStatus);
+      try {
+        const fetchedStatus = await getStatus(session.user.id);
+        if (fetchedStatus !== null) {
+          setStatus(fetchedStatus);
+        }
+
+        const fetchedProfile = await getProfile(session.user.id);
+        setProfile(fetchedProfile);
+
+        setShareLink(`${window.location.origin}/?professionalId=${session.user.id}`);
+      } catch (error) {
+        Sentry.captureException(error);
+        console.error(error);
       }
-
-      const fetchedProfile = await getProfile(session.user.id);
-      setProfile(fetchedProfile);
-
-      setShareLink(`${window.location.origin}/?professionalId=${session.user.id}`);
     };
 
     fetchData();
@@ -25,14 +31,27 @@ export default function useWorkerDashboard(session) {
 
   const handleUpdateStatus = async () => {
     setLoading(true);
-    await updateStatus(session.access_token, status);
-    setLoading(false);
-    alert('Status updated');
+    try {
+      await updateStatus(session.access_token, status);
+      alert('Status updated');
+    } catch (error) {
+      Sentry.captureException(error);
+      console.error(error);
+      alert('Could not update status. Please check error logs in Sentry.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleUpdateProfile = async () => {
-    await updateProfile(session.access_token, profile);
-    alert('Profile updated');
+    try {
+      await updateProfile(session.access_token, profile);
+      alert('Profile updated');
+    } catch (error) {
+      Sentry.captureException(error);
+      console.error(error);
+      alert('Could not update profile. Please check error logs in Sentry.');
+    }
   };
 
   const handleCopyToClipboard = () => {
