@@ -24,3 +24,12 @@ export const fetchProfessionalProfile = async (professionalId) => {
   const data = await response.json();
   return data;
 };
+
+export const fetchProfessionalStatus = async (professionalId) => {
+  const response = await fetch(`/api/getStatus?professionalId=${professionalId}`);
+  const data = await response.json();
+  if (data && !data.error) {
+    return data.status;
+  }
+  return null;
+};

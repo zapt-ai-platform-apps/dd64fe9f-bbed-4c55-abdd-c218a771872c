@@ -1,59 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { supabase } from '../supabaseClient';
 import ProfessionalProfile from './ProfessionalProfile';
-import { fetchFavorites, addFavorite, fetchProfessionalProfile } from '../services/api';
+import * as Sentry from '@sentry/browser';
+import {
+  fetchFavorites,
+  addFavorite,
+  fetchProfessionalProfile,
+  fetchProfessionalStatus,
+} from '../services/api';
+import useClientDashboard from './useClientDashboard';
 
 export default function ClientDashboard({ session }) {
-  const [favorites, setFavorites] = useState([]);
-  const [professionalIdToAdd, setProfessionalIdToAdd] = useState('');
-  const [professionalProfile, setProfessionalProfile] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    loadFavorites();
-    checkForShareLink();
-  }, []);
-
-  const checkForShareLink = () => {
-    const params = new URLSearchParams(window.location.search);
-    const professionalId = params.get('professionalId');
-    if (professionalId) {
-      setProfessionalIdToAdd(professionalId);
-      loadProfessionalProfile(professionalId);
-    }
-  };
-
-  const loadFavorites = async () => {
-    setLoading(true);
-    const data = await fetchFavorites(session.access_token);
-    setFavorites(data);
-    setLoading(false);
-  };
-
-  const loadProfessionalProfile = async (professionalId) => {
-    const data = await fetchProfessionalProfile(professionalId);
-    setProfessionalProfile(data);
-  };
-
-  const handleAddFavorite = async () => {
-    await addFavorite(session.access_token, professionalIdToAdd);
-    setProfessionalIdToAdd('');
-    alert('Professional added to your favorites!');
-    window.history.replaceState({}, document.title, window.location.pathname);
-    loadFavorites();
-  };
-
-  const signOut = async () => {
-    await supabase.auth.signOut();
-  };
+  const {
+    favorites,
+    professionalIdToAdd,
+    professionalProfile,
+    professionalStatus,
+    loading,
+    handleAddFavorite,
+    signOut,
+  } = useClientDashboard(session);
 
   return (
-    <div className="p-4 max-w-md mx-auto h-full flex flex-col">
-      <h1 className="text-2xl font-bold mb-4">Welcome, {session.user.email}</h1>
+    <div className="min-h-screen flex flex-col p-4 max-w-md mx-auto">
+      <h1 className="text-2xl font-bold mb-4 text-black">Welcome, {session.user.email}</h1>
       {professionalProfile && (
-        <ProfessionalProfile profile={professionalProfile} onAddFavorite={handleAddFavorite} />
+        <ProfessionalProfile
+          profile={professionalProfile}
+          status={professionalStatus}
+          onAddFavorite={handleAddFavorite}
+        />
       )}
-      <div className="mb-4 flex-grow">
+      <div className="mb-4 flex-grow text-black">
         <h2 className="text-xl font-bold mb-2">Your Favorites</h2>
         {loading ? (
           <p>Loading...</p>
@@ -65,7 +43,7 @@ export default function ClientDashboard({ session }) {
               <li key={fav.professionalId} className="border p-2 rounded-md">
                 <p>Professional ID: {fav.professionalId}</p>
                 <a
-                  href={`/professional-profile?professionalId=${fav.professionalId}`}
+                  href={`/?professionalId=${fav.professionalId}`}
                   className="text-blue-500 underline cursor-pointer"
                 >
                   View Profile
