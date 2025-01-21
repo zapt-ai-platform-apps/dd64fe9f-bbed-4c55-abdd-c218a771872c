@@ -1,8 +1,8 @@
-import { authenticateUser } from './_apiUtils';
+import { authenticateUser } from './_apiUtils.js';
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 import { favorites } from '../drizzle/schema.js';
-import Sentry from './_sentry';
+import Sentry from './_sentry.js';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {

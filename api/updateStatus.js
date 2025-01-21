@@ -1,9 +1,9 @@
-import { authenticateUser } from './_apiUtils';
+import { authenticateUser } from './_apiUtils.js';
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 import { statuses } from '../drizzle/schema.js';
 import { eq } from 'drizzle-orm';
-import Sentry from './_sentry';
+import Sentry from './_sentry.js';
 
 export default async function handler(req, res) {
   if (req.method !== 'PUT') {
