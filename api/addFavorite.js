@@ -28,7 +28,7 @@ export default async function handler(req, res) {
       .where(eq(favorites.professionalId, professionalId));
 
     if (existing.length > 0) {
-      return res.status(200).json({ message: 'Favorite already exists' });
+      return res.status(409).json({ error: 'Professional already in favorites' });
     }
 
     await db.insert(favorites).values({

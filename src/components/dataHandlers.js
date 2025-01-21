@@ -54,6 +54,7 @@ export const useDataHandlers = (
     setLoading(true);
     try {
       await addFavorite(session.access_token, professionalId);
+      // Only show success message if not already in favorites
       alert('Professional added to your favorites!');
       window.history.replaceState({}, document.title, window.location.pathname);
       loadFavorites();
