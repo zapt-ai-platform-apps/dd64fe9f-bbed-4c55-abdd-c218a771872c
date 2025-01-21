@@ -26,20 +26,30 @@ export default function useClientDashboard(session) {
   useEffect(() => {
     loadFavorites();
     checkForShareLink();
+    
+    // Handle URL changes
+    const handleUrlChange = () => {
+      checkForShareLink();
+    };
+    window.addEventListener('popstate', handleUrlChange);
+    return () => window.removeEventListener('popstate', handleUrlChange);
   }, []);
 
   const checkForShareLink = () => {
-    // Check localStorage for pending professionalId
-    const storedProfessionalId = localStorage.getItem('pendingProfessionalId');
+    const params = new URLSearchParams(window.location.search);
+    const professionalId = params.get('professionalId') || localStorage.getItem('pendingProfessionalId');
     
-    if (storedProfessionalId) {
-      loadProfessionalProfile(storedProfessionalId);
-      loadProfessionalStatus(storedProfessionalId);
+    if (professionalId) {
+      loadProfessionalProfile(professionalId);
+      loadProfessionalStatus(professionalId);
       
       if (session) {
-        handleAddFavorite(storedProfessionalId);
+        handleAddFavorite(professionalId);
         localStorage.removeItem('pendingProfessionalId');
       }
+    } else {
+      setProfessionalProfile(null);
+      setProfessionalStatus(null);
     }
   };
 
