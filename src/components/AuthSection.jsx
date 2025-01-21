@@ -6,6 +6,15 @@ import PoweredByZapt from './PoweredByZapt';
 import { appearance } from './authTheme';
 
 export default function AuthSection({ onBack }) {
+  // Store pending professionalId before auth
+  const handleAuth = () => {
+    const params = new URLSearchParams(window.location.search);
+    const professionalId = params.get('professionalId');
+    if (professionalId) {
+      localStorage.setItem('pendingProfessionalId', professionalId);
+    }
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-background via-surface to-background/95">
       <div className="card-glass p-8 w-full max-w-md space-y-6 backdrop-blur-lg border border-white/10 shadow-xl relative">
@@ -27,6 +36,8 @@ export default function AuthSection({ onBack }) {
               supabaseClient={supabase}
               providers={['google', 'facebook', 'apple']}
               appearance={appearance}
+              redirectTo={window.location.origin}
+              onSignInStarted={handleAuth}
             />
           </div>
           

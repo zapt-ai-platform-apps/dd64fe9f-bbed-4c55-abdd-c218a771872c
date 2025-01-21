@@ -29,15 +29,26 @@ export default function useClientDashboard(session) {
   }, []);
 
   const checkForShareLink = () => {
+    // Check both URL params and localStorage for professionalId
     const params = new URLSearchParams(window.location.search);
-    const professionalId = params.get('professionalId');
+    const urlProfessionalId = params.get('professionalId');
+    const storedProfessionalId = localStorage.getItem('pendingProfessionalId');
+
+    const professionalId = urlProfessionalId || storedProfessionalId;
     
     if (professionalId) {
+      // Store in localStorage if coming from URL param
+      if (urlProfessionalId) {
+        localStorage.setItem('pendingProfessionalId', professionalId);
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+
       loadProfessionalProfile(professionalId);
       loadProfessionalStatus(professionalId);
       
       if (session) {
         handleAddFavorite(professionalId);
+        localStorage.removeItem('pendingProfessionalId');
       }
     }
   };

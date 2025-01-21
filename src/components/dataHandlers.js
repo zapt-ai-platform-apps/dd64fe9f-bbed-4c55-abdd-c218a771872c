@@ -59,10 +59,11 @@ export const useDataHandlers = (
       loadFavorites();
     } catch (error) {
       console.error(error);
-      if (!error.message.includes('duplicate key value')) {
+      if (error.message.includes('duplicate key value')) {
         alert('This professional is already in your favorites');
+      } else {
+        Sentry.captureException(error);
       }
-      Sentry.captureException(error);
     } finally {
       setLoading(false);
     }
