@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Auth } from '@supabase/auth-ui-react';
 import { supabase } from '../supabaseClient';
 import AuthHeader from './AuthHeader';
@@ -6,14 +6,15 @@ import PoweredByZapt from './PoweredByZapt';
 import { appearance } from './authTheme';
 
 export default function AuthSection({ onBack }) {
-  // Store pending professionalId before auth
-  const handleAuth = () => {
+  // Capture professionalId immediately when component mounts
+  useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const professionalId = params.get('professionalId');
     if (professionalId) {
       localStorage.setItem('pendingProfessionalId', professionalId);
+      window.history.replaceState({}, document.title, window.location.pathname);
     }
-  };
+  }, []);
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-background via-surface to-background/95">
@@ -37,7 +38,6 @@ export default function AuthSection({ onBack }) {
               providers={['google', 'facebook', 'apple']}
               appearance={appearance}
               redirectTo={window.location.origin}
-              onSignInStarted={handleAuth}
             />
           </div>
           
