@@ -22,7 +22,7 @@ export default async function handler(req, res) {
       .limit(1);
 
     if (result.length === 0) {
-      res.status(404).json({ error: 'Profile not found' });
+      res.status(200).json({});
       return;
     }
 
