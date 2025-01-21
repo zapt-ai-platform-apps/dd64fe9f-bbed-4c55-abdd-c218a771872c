@@ -1,11 +1,15 @@
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
-import { statuses } from '../drizzle/schema.js';
+import { statuses } from '../../drizzle/schema.js';
 import { eq } from 'drizzle-orm';
 import Sentry from './_sentry.js';
 
 export default async function handler(req, res) {
   const { professionalId } = req.query;
+
+  if (!professionalId) {
+    return res.status(400).json({ error: 'Missing professionalId parameter' });
+  }
 
   try {
     const client = postgres(process.env.COCKROACH_DB_URL);

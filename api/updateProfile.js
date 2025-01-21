@@ -1,19 +1,22 @@
 import { authenticateUser } from './_apiUtils.js';
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
-import { profiles } from '../drizzle/schema.js';
+import { profiles } from '../../drizzle/schema.js';
 import { eq } from 'drizzle-orm';
 import Sentry from './_sentry.js';
 
 export default async function handler(req, res) {
   if (req.method !== 'PUT') {
-    res.status(405).json({ error: 'Method Not Allowed' });
-    return;
+    return res.status(405).json({ error: 'Method Not Allowed' });
   }
   
   try {
     const user = await authenticateUser(req);
     const { name, bio } = req.body;
+
+    if (!name) {
+      return res.status(400).json({ error: 'Name is required' });
+    }
 
     const client = postgres(process.env.COCKROACH_DB_URL);
     const db = drizzle(client);
