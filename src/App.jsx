@@ -4,10 +4,12 @@ import WorkerDashboard from './components/WorkerDashboard';
 import ClientDashboard from './components/ClientDashboard';
 import AuthSection from './components/AuthSection';
 import RoleSwitcher from './components/RoleSwitcher';
+import LandingPage from './components/LandingPage';
 
 export default function App() {
   const [session, setSession] = useState(null);
   const [userType, setUserType] = useState('client');
+  const [showAuth, setShowAuth] = useState(false);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -30,8 +32,13 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col">
       <div className="flex-grow">
-        {!session && <AuthSection />}
-        {session && (
+        {!session ? (
+          showAuth ? (
+            <AuthSection onBack={() => setShowAuth(false)} />
+          ) : (
+            <LandingPage onShowAuth={() => setShowAuth(true)} />
+          )
+        ) : (
           <>
             <RoleSwitcher userType={userType} selectUserType={selectUserType} />
             {userType === 'professional' && <WorkerDashboard session={session} />}
@@ -39,16 +46,6 @@ export default function App() {
           </>
         )}
       </div>
-      <footer className="p-4 text-center border-t border-white/10">
-        <a
-          href="https://www.zapt.ai"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-500 hover:text-blue-400 transition-colors text-sm font-medium"
-        >
-          Made on ZAPT
-        </a>
-      </footer>
     </div>
   );
 }

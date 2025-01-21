@@ -1,18 +1,24 @@
 import React from 'react';
 import { Auth } from '@supabase/auth-ui-react';
-import { ThemeSupa } from '@supabase/auth-ui-shared';
 import { supabase } from '../supabaseClient';
+import AuthHeader from './AuthHeader';
+import PoweredByZapt from './PoweredByZapt';
+import { appearance } from './authTheme';
 
-export default function AuthSection() {
+export default function AuthSection({ onBack }) {
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-background via-surface to-background/95">
-      <div className="card-glass p-8 w-full max-w-md space-y-6 backdrop-blur-lg border border-white/10 shadow-xl">
-        <div className="text-center space-y-4">
-          <h1 className="text-4xl font-display font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            StatusPro
-          </h1>
-          <p className="text-gray-300 text-lg">Professional Presence Management</p>
-        </div>
+      <div className="card-glass p-8 w-full max-w-md space-y-6 backdrop-blur-lg border border-white/10 shadow-xl relative">
+        <button
+          onClick={onBack}
+          className="absolute top-4 left-4 text-gray-400 hover:text-white transition-colors"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+        </button>
+        
+        <AuthHeader />
         
         <div className="space-y-6">
           <div className="text-center">
@@ -20,44 +26,11 @@ export default function AuthSection() {
             <Auth
               supabaseClient={supabase}
               providers={['google', 'facebook', 'apple']}
-              appearance={{
-                theme: ThemeSupa,
-                variables: {
-                  default: {
-                    colors: {
-                      brand: '#6366f1',
-                      brandAccent: '#8b5cf6',
-                      inputText: '#ffffff',
-                      inputBackground: 'rgba(255, 255, 255, 0.05)',
-                      inputBorder: 'rgba(255, 255, 255, 0.1)',
-                      messageText: '#ffffff',
-                    },
-                    space: {
-                      spaceSmall: '4px',
-                      spaceMedium: '8px',
-                      spaceLarge: '16px',
-                    },
-                    radii: {
-                      borderRadiusButton: '8px',
-                      inputBorderRadius: '8px',
-                    },
-                  },
-                },
-              }}
+              appearance={appearance}
             />
           </div>
           
-          <div className="text-center text-sm text-gray-400">
-            Powered by{' '}
-            <a
-              href="https://www.zapt.ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:text-primary/80 transition-colors font-medium"
-            >
-              ZAPT
-            </a>
-          </div>
+          <PoweredByZapt />
         </div>
       </div>
     </div>
