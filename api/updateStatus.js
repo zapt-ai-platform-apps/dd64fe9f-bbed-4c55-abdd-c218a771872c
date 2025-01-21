@@ -28,17 +28,30 @@ export default async function handler(req, res) {
     const client = postgres(process.env.COCKROACH_DB_URL);
     const db = drizzle(client);
 
-    await db
-      .insert(statuses)
-      .values({
+    // Check for existing status
+    const existingStatus = await db
+      .select()
+      .from(statuses)
+      .where(eq(statuses.userId, user.id))
+      .limit(1);
+
+    if (existingStatus.length > 0) {
+      // Update existing status
+      await db
+        .update(statuses)
+        .set({
+          status,
+          updatedAt: new Date()
+        })
+        .where(eq(statuses.userId, user.id));
+    } else {
+      // Insert new status
+      await db.insert(statuses).values({
         userId: user.id,
         status,
-        updatedAt: new Date(),
-      })
-      .onConflictDoUpdate({
-        target: statuses.userId,
-        set: { status, updatedAt: new Date() },
+        updatedAt: new Date()
       });
+    }
 
     res.status(200).json({ message: 'Status updated' });
   } catch (error) {
