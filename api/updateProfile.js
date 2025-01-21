@@ -1,7 +1,7 @@
 import { authenticateUser } from './_apiUtils.js';
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
-import { profiles } from '../../drizzle/schema.js';
+import { profiles } from '../drizzle/schema.js';
 import { eq } from 'drizzle-orm';
 import Sentry from './_sentry.js';
 
