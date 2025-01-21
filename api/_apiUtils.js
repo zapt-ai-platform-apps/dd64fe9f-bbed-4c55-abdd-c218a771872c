@@ -1,9 +1,9 @@
 import { initializeZapt } from '@zapt/zapt-js';
 
-const APP_ID = process.env.APP_ID;
+const APP_ID = process.env.VITE_PUBLIC_APP_ID;
 
 if (!APP_ID) {
-  throw new Error('Missing APP_ID environment variable');
+  throw new Error('Missing VITE_PUBLIC_APP_ID environment variable');
 }
 
 const { supabase } = initializeZapt(APP_ID);
