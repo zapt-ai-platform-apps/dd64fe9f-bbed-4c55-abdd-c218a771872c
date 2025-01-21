@@ -11,3 +11,27 @@ export const getProfile = async (professionalId) => {
   const data = await response.json();
   return { name: data.name || '', bio: data.bio || '' };
 };
+
+export const updateStatus = async (accessToken, status) => {
+  const response = await fetch('/api/updateStatus', {
+    method: 'PUT',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ status }),
+  });
+  if (!response.ok) throw new Error('Failed to update status');
+};
+
+export const updateProfile = async (accessToken, profile) => {
+  const response = await fetch('/api/updateProfile', {
+    method: 'PUT',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(profile),
+  });
+  if (!response.ok) throw new Error('Failed to update profile');
+};
