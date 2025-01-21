@@ -2,8 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body,
-#root {
-  height: 100%;
+@layer base {
+  html {
+    @apply h-full bg-gradient-to-br from-background via-surface to-background;
+  }
+  
+  body {
+    @apply h-full antialiased text-gray-100;
+  }
+
+  input, textarea, button {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 transition-all;
+  }
+}
+
+@layer components {
+  .card-glass {
+    @apply bg-white bg-opacity-5 backdrop-blur-xs rounded-xl border border-white border-opacity-10 shadow-glass;
+  }
+  
+  .btn-primary {
+    @apply px-6 py-3 rounded-lg bg-primary hover:bg-primary/90 text-white font-display font-medium cursor-pointer transition-colors;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg box-border text-white placeholder-gray-400;
+  }
 }

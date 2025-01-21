@@ -1,4 +1,5 @@
 import React from 'react';
+import LoadingSpinner from './LoadingSpinner';
 
 export default function ProfileStatusSection({
   profile,
@@ -10,43 +11,49 @@ export default function ProfileStatusSection({
   loading,
 }) {
   return (
-    <div className="mb-4">
-      <h2 className="text-xl font-bold mb-2">Your Profile</h2>
-      <input
-        type="text"
-        value={profile.name}
-        onChange={(e) => setProfile({ ...profile, name: e.target.value })}
-        className="w-full px-3 py-2 border border-gray-300 rounded-md mb-2 box-border"
-        placeholder="Your Name"
-      />
-      <textarea
-        value={profile.bio}
-        onChange={(e) => setProfile({ ...profile, bio: e.target.value })}
-        className="w-full px-3 py-2 border border-gray-300 rounded-md box-border"
-        placeholder="Your Bio"
-      />
-      <button
-        onClick={handleUpdateProfile}
-        className="bg-blue-500 text-white px-4 py-2 rounded-md cursor-pointer mt-2"
-      >
-        Update Profile
-      </button>
-      <div className="mt-6">
-        <label className="block text-gray-700 mb-2">Update your status:</label>
+    <div className="space-y-6">
+      <div className="space-y-4">
+        <h2 className="text-xl font-display font-semibold">Professional Profile</h2>
         <input
           type="text"
-          value={status}
-          onChange={(e) => setStatus(e.target.value)}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md box-border"
-          placeholder="e.g., Running 10 minutes late"
+          value={profile.name}
+          onChange={(e) => setProfile({ ...profile, name: e.target.value })}
+          className="input-field"
+          placeholder="Display Name"
+        />
+        <textarea
+          value={profile.bio}
+          onChange={(e) => setProfile({ ...profile, bio: e.target.value })}
+          className="input-field h-32"
+          placeholder="Professional bio (e.g., services, expertise)"
         />
         <button
-          onClick={handleUpdateStatus}
-          className="bg-blue-500 text-white px-4 py-2 rounded-md cursor-pointer mt-2"
+          onClick={handleUpdateProfile}
+          className="btn-primary w-full flex items-center justify-center"
           disabled={loading}
         >
-          {loading ? 'Updating...' : 'Update Status'}
+          {loading ? <LoadingSpinner /> : 'Update Profile'}
         </button>
+      </div>
+
+      <div className="pt-6 border-t border-white/10 space-y-4">
+        <h2 className="text-xl font-display font-semibold">Current Status</h2>
+        <div className="space-y-4">
+          <input
+            type="text"
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
+            className="input-field"
+            placeholder="e.g., Available now • Running 15 mins late • Fully booked"
+          />
+          <button
+            onClick={handleUpdateStatus}
+            className="btn-primary w-full flex items-center justify-center"
+            disabled={loading}
+          >
+            {loading ? <LoadingSpinner /> : 'Update Status'}
+          </button>
+        </div>
       </div>
     </div>
   );
