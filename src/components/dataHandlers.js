@@ -1,6 +1,7 @@
 import { 
   fetchFavorites, 
   addFavorite, 
+  removeFavorite,
   fetchProfessionalProfile, 
   fetchProfessionalStatus 
 } from '../services/api';
@@ -50,12 +51,20 @@ export const useDataHandlers = (
   };
 
   const handleAddFavorite = async (professionalId) => {
-    console.log('Adding favorite...', professionalId);
+    console.log('Toggling favorite...', professionalId);
     setLoading(true);
     try {
-      await addFavorite(session.access_token, professionalId);
-      // Only show success message if not already in favorites
-      alert('Professional added to your favorites!');
+      const isCurrentlyTracked = (await fetchFavorites(session.access_token))
+        .some(f => f.professionalId === professionalId);
+
+      if (isCurrentlyTracked) {
+        await removeFavorite(session.access_token, professionalId);
+        alert('Professional removed from your favorites!');
+      } else {
+        await addFavorite(session.access_token, professionalId);
+        alert('Professional added to your favorites!');
+      }
+      
       window.history.replaceState({}, document.title, window.location.pathname);
       loadFavorites();
     } catch (error) {

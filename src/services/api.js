@@ -25,6 +25,19 @@ export const addFavorite = async (accessToken, professionalId) => {
   if (!response.ok) throw new Error('Failed to add favorite');
 };
 
+export const removeFavorite = async (accessToken, professionalId) => {
+  const response = await fetch('/api/removeFavorite', {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ professionalId }),
+  });
+  
+  if (!response.ok) throw new Error('Failed to remove favorite');
+};
+
 export const fetchProfessionalProfile = async (professionalId) => {
   const response = await fetch(`/api/getProfile?professionalId=${professionalId}`);
   if (!response.ok) return null;
