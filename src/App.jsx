@@ -7,7 +7,7 @@ import RoleSwitcher from './components/RoleSwitcher';
 
 export default function App() {
   const [session, setSession] = useState(null);
-  const [userType, setUserType] = useState('professional');
+  const [userType, setUserType] = useState('client');
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -39,12 +39,12 @@ export default function App() {
           </>
         )}
       </div>
-      <footer className="p-4 text-center">
+      <footer className="p-4 text-center border-t border-white/10">
         <a
           href="https://www.zapt.ai"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-500 cursor-pointer"
+          className="text-blue-500 hover:text-blue-400 transition-colors text-sm font-medium"
         >
           Made on ZAPT
         </a>

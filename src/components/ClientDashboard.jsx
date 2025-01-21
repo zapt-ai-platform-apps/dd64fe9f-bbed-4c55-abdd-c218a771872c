@@ -26,10 +26,6 @@ export default function ClientDashboard({ session }) {
         loading={loading}
         favorites={favorites}
       />
-
-      <footer className="mt-8 text-center text-sm text-gray-400">
-        Real-time updates every 30 seconds
-      </footer>
     </div>
   );
 }
