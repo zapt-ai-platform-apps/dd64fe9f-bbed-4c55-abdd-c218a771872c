@@ -3,24 +3,14 @@ import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 import { profiles } from '../drizzle/schema.js';
 import { eq } from 'drizzle-orm';
-import * as Sentry from '@sentry/node';
+import Sentry from './_sentry';
 
 export default async function handler(req, res) {
-  Sentry.init({
-    dsn: process.env.VITE_PUBLIC_SENTRY_DSN,
-    environment: process.env.VITE_PUBLIC_APP_ENV,
-    initialScope: {
-      tags: {
-        type: 'backend',
-        projectId: process.env.VITE_PUBLIC_APP_ID
-      }
-    }
-  });
-
   if (req.method !== 'PUT') {
     res.status(405).json({ error: 'Method Not Allowed' });
     return;
   }
+  
   try {
     const user = await authenticateUser(req);
     const { name, bio } = req.body;
@@ -28,7 +18,6 @@ export default async function handler(req, res) {
     const client = postgres(process.env.COCKROACH_DB_URL);
     const db = drizzle(client);
 
-    // Check for existing profile
     const existingProfile = await db
       .select()
       .from(profiles)
@@ -36,7 +25,6 @@ export default async function handler(req, res) {
       .limit(1);
 
     if (existingProfile.length > 0) {
-      // Update existing profile
       await db
         .update(profiles)
         .set({
@@ -46,7 +34,6 @@ export default async function handler(req, res) {
         })
         .where(eq(profiles.userId, user.id));
     } else {
-      // Insert new profile
       await db.insert(profiles).values({
         userId: user.id,
         name,

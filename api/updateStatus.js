@@ -3,24 +3,14 @@ import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
 import { statuses } from '../drizzle/schema.js';
 import { eq } from 'drizzle-orm';
-import * as Sentry from '@sentry/node';
+import Sentry from './_sentry';
 
 export default async function handler(req, res) {
-  Sentry.init({
-    dsn: process.env.VITE_PUBLIC_SENTRY_DSN,
-    environment: process.env.VITE_PUBLIC_APP_ENV,
-    initialScope: {
-      tags: {
-        type: 'backend',
-        projectId: process.env.VITE_PUBLIC_APP_ID
-      }
-    }
-  });
-
   if (req.method !== 'PUT') {
     res.status(405).json({ error: 'Method Not Allowed' });
     return;
   }
+  
   try {
     const user = await authenticateUser(req);
     const { status } = req.body;
@@ -28,7 +18,6 @@ export default async function handler(req, res) {
     const client = postgres(process.env.COCKROACH_DB_URL);
     const db = drizzle(client);
 
-    // Check for existing status
     const existingStatus = await db
       .select()
       .from(statuses)
@@ -36,7 +25,6 @@ export default async function handler(req, res) {
       .limit(1);
 
     if (existingStatus.length > 0) {
-      // Update existing status
       await db
         .update(statuses)
         .set({
@@ -45,7 +33,6 @@ export default async function handler(req, res) {
         })
         .where(eq(statuses.userId, user.id));
     } else {
-      // Insert new status
       await db.insert(statuses).values({
         userId: user.id,
         status,
