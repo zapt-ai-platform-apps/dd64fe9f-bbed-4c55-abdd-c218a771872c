@@ -17,6 +17,11 @@ export const addFavorite = async (accessToken, professionalId) => {
     },
     body: JSON.stringify({ professionalId }),
   });
+  
+  if (response.status === 409) {
+    throw new Error('Professional already in favorites');
+  }
+  
   if (!response.ok) throw new Error('Failed to add favorite');
 };
 

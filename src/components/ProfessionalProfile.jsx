@@ -11,7 +11,7 @@ export default function ProfessionalProfile({ profile, status, onAddFavorite }) 
           <p className="text-gray-400">{profile.bio || 'No bio provided'}</p>
         </div>
         <button
-          onClick={onAddFavorite}
+          onClick={() => onAddFavorite(profile.userId)}
           className="btn-primary flex items-center gap-2 hover:bg-primary/80"
         >
           <svg

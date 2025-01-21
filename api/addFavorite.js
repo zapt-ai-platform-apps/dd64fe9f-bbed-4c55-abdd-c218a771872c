@@ -20,6 +20,16 @@ export default async function handler(req, res) {
     const client = postgres(process.env.COCKROACH_DB_URL);
     const db = drizzle(client);
 
+    // Check if favorite already exists
+    const existing = await db.select()
+      .from(favorites)
+      .where(eq(favorites.clientId, user.id))
+      .where(eq(favorites.professionalId, professionalId));
+
+    if (existing.length > 0) {
+      return res.status(200).json({ message: 'Favorite already exists' });
+    }
+
     await db.insert(favorites).values({
       clientId: user.id,
       professionalId,
@@ -28,6 +38,9 @@ export default async function handler(req, res) {
     res.status(200).json({ message: 'Favorite added' });
   } catch (error) {
     Sentry.captureException(error);
+    if (error.message.includes('duplicate key value')) {
+      return res.status(409).json({ error: 'Professional already in favorites' });
+    }
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }
