@@ -24,6 +24,13 @@ export default function ProfileStatusSection({
           className="input-field h-32"
           placeholder="Professional bio (e.g., services, expertise)"
         />
+        <input
+          type="tel"
+          value={profile.whatsappNumber || ''}
+          onChange={(e) => setProfile({ ...profile, whatsappNumber: e.target.value })}
+          className="input-field"
+          placeholder="WhatsApp number (with country code)"
+        />
         <button
           onClick={handleUpdateProfile}
           className="btn-primary w-full flex items-center justify-center"

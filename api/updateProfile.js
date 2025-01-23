@@ -12,7 +12,7 @@ export default async function handler(req, res) {
   
   try {
     const user = await authenticateUser(req);
-    const { name, bio } = req.body;
+    const { name, bio, whatsappNumber } = req.body;
 
     if (!name) {
       return res.status(400).json({ error: 'Name is required' });
@@ -33,6 +33,7 @@ export default async function handler(req, res) {
         .set({
           name,
           bio,
+          whatsappNumber,
           updatedAt: new Date()
         })
         .where(eq(profiles.userId, user.id));
@@ -41,6 +42,7 @@ export default async function handler(req, res) {
         userId: user.id,
         name,
         bio,
+        whatsappNumber,
         createdAt: new Date(),
         updatedAt: new Date()
       });
