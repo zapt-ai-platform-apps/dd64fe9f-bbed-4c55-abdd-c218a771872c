@@ -29,7 +29,8 @@ export default function ProfileStatusSection({
           value={profile.whatsappNumber || ''}
           onChange={(e) => setProfile({ ...profile, whatsappNumber: e.target.value })}
           className="input-field"
-          placeholder="WhatsApp number (with country code)"
+          placeholder="WhatsApp number with country code (e.g., +1234567890)"
+          pattern="^\+[1-9]\d{1,14}$"
         />
         <button
           onClick={handleUpdateProfile}

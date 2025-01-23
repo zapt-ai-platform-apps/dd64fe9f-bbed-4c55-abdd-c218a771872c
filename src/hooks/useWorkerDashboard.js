@@ -6,7 +6,7 @@ import { handleStatusUpdate, handleStatusClear, handleProfileUpdate, handleLinkC
 export default function useWorkerDashboard(session) {
   const [status, setStatus] = useState('');
   const [loading, setLoading] = useState(true);
-  const [profile, setProfile] = useState({ name: '', bio: '' });
+  const [profile, setProfile] = useState({ name: '', bio: '', whatsappNumber: '' });
   const [shareLink, setShareLink] = useState('');
 
   useEffect(() => {
@@ -40,7 +40,7 @@ export default function useWorkerDashboard(session) {
     shareLink,
     handleUpdateStatus: () => handleStatusUpdate(session.access_token, status, setLoading),
     handleClearStatus: () => handleStatusClear(session.access_token, setLoading, setStatus),
-    handleUpdateProfile: () => handleProfileUpdate(session.access_token, profile, setLoading),
+    handleUpdateProfile: () => handleProfileUpdate(session.access_token, profile, setLoading, setProfile),
     handleCopyToClipboard: () => handleLinkCopy(shareLink)
   };
 }

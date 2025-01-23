@@ -9,7 +9,11 @@ export const getProfile = async (professionalId) => {
   const response = await fetch(`/api/getProfile?professionalId=${professionalId}`);
   if (!response.ok) return { name: '', bio: '' };
   const data = await response.json();
-  return { name: data.name || '', bio: data.bio || '' };
+  return { 
+    name: data.name || '', 
+    bio: data.bio || '',
+    whatsappNumber: data.whatsappNumber || ''
+  };
 };
 
 export const updateStatus = async (accessToken, status) => {
@@ -44,4 +48,5 @@ export const updateProfile = async (accessToken, profile) => {
     body: JSON.stringify(profile),
   });
   if (!response.ok) throw new Error('Failed to update profile');
+  return await response.json();
 };

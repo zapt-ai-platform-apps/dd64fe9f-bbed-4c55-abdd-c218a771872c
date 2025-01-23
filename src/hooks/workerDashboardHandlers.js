@@ -28,10 +28,11 @@ export const handleStatusClear = async (token, setLoading, setStatus) => {
   }
 };
 
-export const handleProfileUpdate = async (token, profile, setLoading) => {
+export const handleProfileUpdate = async (token, profile, setLoading, setProfile) => {
   setLoading(true);
   try {
-    await updateProfile(token, profile);
+    const updatedProfile = await updateProfile(token, profile);
+    setProfile(updatedProfile);
     alert('Profile updated');
   } catch (error) {
     Sentry.captureException(error);

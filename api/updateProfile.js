@@ -48,7 +48,14 @@ export default async function handler(req, res) {
       });
     }
 
-    res.status(200).json({ message: 'Profile updated' });
+    // Return updated profile
+    const result = await db
+      .select()
+      .from(profiles)
+      .where(eq(profiles.userId, user.id))
+      .limit(1);
+
+    res.status(200).json(result[0]);
   } catch (error) {
     Sentry.captureException(error);
     res.status(500).json({ error: 'Internal Server Error' });
