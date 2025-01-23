@@ -1,5 +1,6 @@
 import React from 'react';
 import LoadingSpinner from './LoadingSpinner';
+import PhoneInput from './PhoneInput';
 
 export default function ProfileStatusSection({
   profile,
@@ -24,13 +25,9 @@ export default function ProfileStatusSection({
           className="input-field h-32"
           placeholder="Professional bio (e.g., services, expertise)"
         />
-        <input
-          type="tel"
+        <PhoneInput
           value={profile.whatsappNumber || ''}
-          onChange={(e) => setProfile({ ...profile, whatsappNumber: e.target.value })}
-          className="input-field"
-          placeholder="WhatsApp number with country code (e.g., +1234567890)"
-          pattern="^\+[1-9]\d{1,14}$"
+          onChange={(value) => setProfile({ ...profile, whatsappNumber: value })}
         />
         <button
           onClick={handleUpdateProfile}
