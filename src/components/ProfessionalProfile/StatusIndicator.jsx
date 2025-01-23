@@ -14,7 +14,7 @@ export function StatusIndicator({ status }) {
             </p>
           )}
         </div>
-        <div className="h-3 w-3 rounded-full bg-success animate-pulse" />
+        <div className={`h-3 w-3 rounded-full ${status?.status ? 'bg-success animate-pulse' : 'bg-gray-600'}`} />
       </div>
     </div>
   );
