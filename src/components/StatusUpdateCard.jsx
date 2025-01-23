@@ -37,7 +37,7 @@ export default function StatusUpdateCard({
             </button>
           </div>
         </div>
-        <p className="text-sm text-primary-200">This status is visible to all your clients in real-time</p>
+        <p className="text-sm text-primary-200">This status is currently visible to all your clients</p>
       </div>
     </div>
   );
