@@ -4,12 +4,13 @@ import { getStatus, getProfile, updateStatus, updateProfile } from '../services/
 
 export default function useWorkerDashboard(session) {
   const [status, setStatus] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true); // Initialize loading as true
   const [profile, setProfile] = useState({ name: '', bio: '' });
   const [shareLink, setShareLink] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
         const fetchedStatus = await getStatus(session.user.id);
         if (fetchedStatus !== null) {
@@ -23,6 +24,8 @@ export default function useWorkerDashboard(session) {
       } catch (error) {
         Sentry.captureException(error);
         console.error(error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -44,6 +47,7 @@ export default function useWorkerDashboard(session) {
   };
 
   const handleUpdateProfile = async () => {
+    setLoading(true);
     try {
       await updateProfile(session.access_token, profile);
       alert('Profile updated');
@@ -51,6 +55,8 @@ export default function useWorkerDashboard(session) {
       Sentry.captureException(error);
       console.error(error);
       alert('Could not update profile. Please check error logs in Sentry.');
+    } finally {
+      setLoading(false);
     }
   };
 

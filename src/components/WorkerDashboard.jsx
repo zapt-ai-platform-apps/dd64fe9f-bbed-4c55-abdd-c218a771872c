@@ -37,23 +37,31 @@ export default function WorkerDashboard({ session }) {
         </button>
       </header>
 
-      <div className="card-glass p-6 flex-grow space-y-8">
-        <ProfileStatusSection
-          profile={profile}
-          setProfile={setProfile}
-          handleUpdateProfile={handleUpdateProfile}
-          status={status}
-          setStatus={setStatus}
-          handleUpdateStatus={handleUpdateStatus}
-          loading={loading}
-        />
+      {loading ? (
+        <div className="flex-1 flex items-center justify-center">
+          <LoadingSpinner />
+        </div>
+      ) : (
+        <>
+          <div className="card-glass p-6 flex-grow space-y-8">
+            <ProfileStatusSection
+              profile={profile}
+              setProfile={setProfile}
+              handleUpdateProfile={handleUpdateProfile}
+              status={status}
+              setStatus={setStatus}
+              handleUpdateStatus={handleUpdateStatus}
+              loading={loading}
+            />
 
-        <ShareLinkSection shareLink={shareLink} handleCopyToClipboard={handleCopyToClipboard} />
-      </div>
+            <ShareLinkSection shareLink={shareLink} handleCopyToClipboard={handleCopyToClipboard} />
+          </div>
 
-      <div className="mt-8 text-center text-sm text-gray-400">
-        Your updates are visible to clients in real-time
-      </div>
+          <div className="mt-8 text-center text-sm text-gray-400">
+            Your updates are visible to clients in real-time
+          </div>
+        </>
+      )}
     </div>
   );
 }
