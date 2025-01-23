@@ -4,32 +4,36 @@ import CountryDropdown from './CountryDropdown';
 
 export default function PhoneInput({ value, onChange }) {
   const [selectedCountry, setSelectedCountry] = useState(countries[0]);
+  const [localNumber, setLocalNumber] = useState('');
 
   useEffect(() => {
     if (value) {
-      const country = countries.find(c => value.startsWith(c.dialCode));
+      const country = countries.find(c => value.startsWith(c.dialCode)) || {
+        code: 'CUSTOM',
+        dialCode: value.match(/^\+\d+/)?.[0] || '',
+        emoji: '🌍',
+        name: 'Custom'
+      };
       if (country) {
         setSelectedCountry(country);
-        onChange(value);
+        setLocalNumber(value.replace(country.dialCode, ''));
       }
     }
-  }, []);
-
-  const handlePhoneChange = (e) => {
-    const phone = e.target.value.replace(/\D/g, '');
-    const fullNumber = selectedCountry.dialCode + phone;
-    onChange(fullNumber);
-  };
+  }, [value]);
 
   const handleCountrySelect = (country) => {
     setSelectedCountry(country);
-    onChange(country.dialCode);
+    onChange(`${country.dialCode}${localNumber}`);
   };
 
-  const displayValue = value?.replace(selectedCountry.dialCode, '') || '';
+  const handleLocalNumberChange = (e) => {
+    const number = e.target.value.replace(/[^0-9]/g, '');
+    setLocalNumber(number);
+    onChange(`${selectedCountry.dialCode}${number}`);
+  };
 
   return (
-    <div className="relative space-y-2">
+    <div className="space-y-2">
       <label className="text-sm font-medium text-gray-300">WhatsApp Number</label>
       <div className="flex gap-2">
         <CountryDropdown
@@ -38,13 +42,16 @@ export default function PhoneInput({ value, onChange }) {
         />
         <input
           type="tel"
-          value={displayValue}
-          onChange={handlePhoneChange}
+          value={localNumber}
+          onChange={handleLocalNumberChange}
           className="input-field flex-grow"
           placeholder="Phone number"
           pattern="^\+[1-9]\d{1,14}$"
         />
       </div>
+      {selectedCountry.code === 'CUSTOM' && (
+        <p className="text-xs text-gray-400">Custom country code selected: {selectedCountry.dialCode}</p>
+      )}
     </div>
   );
 }

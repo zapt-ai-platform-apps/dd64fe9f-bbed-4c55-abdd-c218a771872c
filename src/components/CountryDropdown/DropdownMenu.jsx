@@ -9,7 +9,7 @@ export default function DropdownMenu({ isOpen, searchQuery, setSearchQuery, filt
           <MagnifyingGlassIcon className="h-4 w-4 text-gray-400" />
           <input
             type="text"
-            placeholder="Search country..."
+            placeholder="Search country or code..."
             className="w-full bg-transparent text-gray-200 placeholder-gray-400 focus:outline-none"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -19,15 +19,21 @@ export default function DropdownMenu({ isOpen, searchQuery, setSearchQuery, filt
       <div className="max-h-60 overflow-y-auto">
         {filteredCountries.map((country) => (
           <button
-            key={country.code}
+            key={country.code + country.dialCode}
             onClick={() => handleSelect(country)}
             className="w-full flex items-center gap-3 px-4 py-2 hover:bg-white/10 transition-colors text-left"
           >
             <span className="text-xl">{country.emoji}</span>
-            <span className="text-gray-300 flex-grow">{country.name}</span>
-            <span className="text-gray-400">{country.dialCode}</span>
+            <span className="text-gray-300 flex-grow">
+              {country.isCustom ? country.name : `${country.name} (${country.dialCode})`}
+            </span>
           </button>
         ))}
+        {filteredCountries.length === 0 && (
+          <div className="px-4 py-2 text-gray-400 text-sm">
+            No matches found. Enter a valid country code starting with '+'
+          </div>
+        )}
       </div>
     </div>
   ) : null;

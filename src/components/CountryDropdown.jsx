@@ -18,10 +18,24 @@ export default function CountryDropdown({ selectedCountry, onCountrySelect }) {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const filteredCountries = countries.filter(country =>
+  let filteredCountries = countries.filter(country =>
     country.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     country.dialCode.includes(searchQuery)
   );
+
+  // Add custom country option if user enters a valid phone code
+  if (searchQuery.startsWith('+') && /^\+[0-9]+$/.test(searchQuery)) {
+    const exists = filteredCountries.some(c => c.dialCode === searchQuery);
+    if (!exists) {
+      filteredCountries.push({
+        code: 'CUSTOM',
+        name: `Custom Code (${searchQuery})`,
+        dialCode: searchQuery,
+        emoji: '🌍',
+        isCustom: true
+      });
+    }
+  }
 
   const handleSelect = (country) => {
     onCountrySelect(country);
