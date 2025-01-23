@@ -11,10 +11,10 @@ const LandingPage = ({ onShowAuth }) => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 animate-fade-in-up">
-            Transform Your Professional Presence
+            Professional Status Management Reimagined
           </h1>
           <p className="text-xl text-indigo-200 mb-8 max-w-3xl mx-auto animate-fade-in-up delay-100">
-            Connect with your clients in real-time. Share availability, updates, and maintain your professional image effortlessly.
+            Streamline client communication with real-time availability updates. Professionals maintain their schedule visibility while clients stay instantly informed.
           </p>
           
           <div className="flex justify-center gap-4 animate-fade-in-up delay-200">
