@@ -1,4 +1,4 @@
-# Status Tracker App
+# StatusPros
 
 An app where professionals like hairdressers or any other profession can create a profile and update their status throughout the day. Clients can check their status, view professional profiles, and add professionals to their favorites.
 
