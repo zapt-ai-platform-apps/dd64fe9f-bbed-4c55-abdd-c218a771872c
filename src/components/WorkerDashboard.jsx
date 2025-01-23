@@ -5,7 +5,7 @@ import ShareLinkSection from './ShareLinkSection';
 import useWorkerDashboard from '../hooks/useWorkerDashboard';
 import LoadingSpinner from './LoadingSpinner';
 
-export default function WorkerDashboard({ session }) {
+export default function WorkerDashboard({ session, onRoleChange }) {
   const {
     status,
     setStatus,
@@ -24,17 +24,25 @@ export default function WorkerDashboard({ session }) {
 
   return (
     <div className="max-w-2xl mx-auto p-4 h-full flex flex-col">
-      <header className="flex justify-between items-center mb-8">
+      <header className="flex justify-between items-center mb-8 gap-4 flex-wrap">
         <div>
           <h1 className="text-2xl font-display font-bold">{profile.name || session.user.email}</h1>
           <p className="text-gray-400">Professional Dashboard</p>
         </div>
-        <button
-          onClick={signOut}
-          className="btn-primary bg-error hover:bg-error/90 px-4 py-2 text-sm"
-        >
-          Sign Out
-        </button>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => onRoleChange('client')}
+            className="btn-primary bg-surface hover:bg-surface/80 px-4 py-2 text-sm"
+          >
+            Switch to Client View
+          </button>
+          <button
+            onClick={signOut}
+            className="btn-primary bg-error hover:bg-error/90 px-4 py-2 text-sm"
+          >
+            Sign Out
+          </button>
+        </div>
       </header>
 
       {loading ? (

@@ -5,7 +5,7 @@ import useClientDashboard from '../hooks/useClientDashboard';
 import ClientDashboardHeader from './ClientDashboardHeader';
 import ClientDashboardMainContent from './ClientDashboardMainContent';
 
-export default function ClientDashboard({ session }) {
+export default function ClientDashboard({ session, onRoleChange }) {
   const {
     favorites,
     professionalProfile,
@@ -18,7 +18,11 @@ export default function ClientDashboard({ session }) {
 
   return (
     <div className="max-w-4xl mx-auto p-4 h-full flex flex-col">
-      <ClientDashboardHeader favorites={favorites} signOut={signOut} />
+      <ClientDashboardHeader 
+        favorites={favorites} 
+        signOut={signOut} 
+        onRoleChange={onRoleChange} 
+      />
       
       <ClientDashboardMainContent
         professionalProfile={professionalProfile}

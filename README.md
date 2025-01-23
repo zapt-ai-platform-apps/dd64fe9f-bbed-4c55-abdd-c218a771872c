@@ -9,3 +9,4 @@ An app where professionals like hairdressers or any other profession can create 
 3. [Client: View Professional Profile](docs/journeys/client-view-professional-profile.md) - Clients can view a professional's profile via a shared link and add them to their favorites
 4. [Professional: Update Status](docs/journeys/professional-update-status.md) - Professionals can update their current status
 5. [Client: View Favorites and Statuses](docs/journeys/client-view-favorites.md) - Clients can view their favorite professionals and check their statuses
+6. [Role Switching](docs/journeys/role-switching.md) - Switch between professional and client views based on current needs
