@@ -1,7 +1,7 @@
 import React from 'react';
 import { supabase } from '../supabaseClient';
 import ProfessionalProfile from './ProfessionalProfile';
-import useClientDashboard from './useClientDashboard';
+import useClientDashboard from '../hooks/useClientDashboard';
 import ClientDashboardHeader from './ClientDashboardHeader';
 import ClientDashboardMainContent from './ClientDashboardMainContent';
 
@@ -13,6 +13,7 @@ export default function ClientDashboard({ session }) {
     loading,
     handleAddFavorite,
     signOut,
+    resetProfessionalProfile
   } = useClientDashboard(session);
 
   return (
@@ -25,6 +26,7 @@ export default function ClientDashboard({ session }) {
         handleAddFavorite={handleAddFavorite}
         loading={loading}
         favorites={favorites}
+        onBack={resetProfessionalProfile}
       />
     </div>
   );

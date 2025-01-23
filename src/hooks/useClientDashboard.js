@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useDataHandlers } from './dataHandlers';
-import { useUserActions } from './userActions';
+import { useDataHandlers } from '../components/dataHandlers';
+import { useUserActions } from '../components/userActions';
 
 export default function useClientDashboard(session) {
   const [favorites, setFavorites] = useState([]);
@@ -22,6 +22,11 @@ export default function useClientDashboard(session) {
   );
 
   const { signOut } = useUserActions();
+
+  const resetProfessionalProfile = () => {
+    setProfessionalProfile(null);
+    setProfessionalStatus(null);
+  };
 
   useEffect(() => {
     const initialize = async () => {
@@ -59,8 +64,7 @@ export default function useClientDashboard(session) {
         window.history.replaceState({}, document.title, window.location.pathname);
       }
     } else {
-      setProfessionalProfile(null);
-      setProfessionalStatus(null);
+      resetProfessionalProfile();
     }
   };
 
@@ -71,5 +75,6 @@ export default function useClientDashboard(session) {
     loading,
     handleAddFavorite,
     signOut,
+    resetProfessionalProfile
   };
 }

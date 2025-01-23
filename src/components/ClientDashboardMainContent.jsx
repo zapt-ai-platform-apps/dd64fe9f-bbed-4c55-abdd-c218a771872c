@@ -10,7 +10,7 @@ export default function ClientDashboardMainContent({
   handleAddFavorite,
   loading,
   favorites,
-  setProfessionalProfile
+  onBack
 }) {
   return (
     <div className="card-glass p-6 flex-grow">
@@ -19,7 +19,7 @@ export default function ClientDashboardMainContent({
           profile={professionalProfile}
           status={professionalStatus}
           onAddFavorite={handleAddFavorite}
-          onBack={() => setProfessionalProfile(null)}
+          onBack={onBack}
           isTracked={favorites.some(f => f.professionalId === professionalProfile.userId)}
         />
       ) : (
