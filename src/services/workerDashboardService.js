@@ -24,6 +24,16 @@ export const updateStatus = async (accessToken, status) => {
   if (!response.ok) throw new Error('Failed to update status');
 };
 
+export const clearStatus = async (accessToken) => {
+  const response = await fetch('/api/clearStatus', {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+  if (!response.ok) throw new Error('Failed to clear status');
+};
+
 export const updateProfile = async (accessToken, profile) => {
   const response = await fetch('/api/updateProfile', {
     method: 'PUT',

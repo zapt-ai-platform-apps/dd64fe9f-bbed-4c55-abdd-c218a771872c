@@ -8,6 +8,7 @@ export default function ProfileStatusSection({
   status,
   setStatus,
   handleUpdateStatus,
+  handleClearStatus,
   loading,
 }) {
   return (
@@ -46,13 +47,22 @@ export default function ProfileStatusSection({
             className="input-field"
             placeholder="e.g., Available now • Running 15 mins late • Fully booked"
           />
-          <button
-            onClick={handleUpdateStatus}
-            className="btn-primary w-full flex items-center justify-center"
-            disabled={loading}
-          >
-            {loading ? <LoadingSpinner /> : 'Update Status'}
-          </button>
+          <div className="grid grid-cols-2 gap-3">
+            <button
+              onClick={handleUpdateStatus}
+              className="btn-primary flex items-center justify-center"
+              disabled={loading}
+            >
+              {loading ? <LoadingSpinner /> : 'Update Status'}
+            </button>
+            <button
+              onClick={handleClearStatus}
+              className="btn-primary bg-surface hover:bg-surface/80 flex items-center justify-center"
+              disabled={loading}
+            >
+              {loading ? <LoadingSpinner /> : 'Clear Status'}
+            </button>
+          </div>
         </div>
       </div>
     </div>
