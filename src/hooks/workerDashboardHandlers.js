@@ -5,7 +5,6 @@ export const handleStatusUpdate = async (token, status, setLoading) => {
   setLoading(true);
   try {
     await updateStatus(token, status);
-    alert('Status updated');
   } catch (error) {
     Sentry.captureException(error);
     console.error(error);
@@ -20,7 +19,6 @@ export const handleStatusClear = async (token, setLoading, setStatus) => {
   try {
     await clearStatus(token);
     setStatus('');
-    alert('Status cleared');
   } catch (error) {
     Sentry.captureException(error);
     console.error(error);
