@@ -3,16 +3,32 @@ import { useState, useEffect } from 'react';
 export default function useUserType(session) {
   const [userType, setUserType] = useState(null);
   const [showRoleConfirmation, setShowRoleConfirmation] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const checkExistingRole = () => {
+    const checkExistingRole = async () => {
       if (session) {
-        const storedType = localStorage.getItem(`userType-${session.user.id}`);
-        if (storedType) {
-          setUserType(storedType);
-          setShowRoleConfirmation(false);
-        } else {
+        try {
+          const response = await fetch('/api/getRole', {
+            headers: {
+              Authorization: `Bearer ${session.access_token}`,
+            },
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            if (data.role) {
+              setUserType(data.role);
+              setShowRoleConfirmation(false);
+              return;
+            }
+          }
           setShowRoleConfirmation(true);
+        } catch (error) {
+          console.error('Error fetching role:', error);
+          setShowRoleConfirmation(true);
+        } finally {
+          setLoading(false);
         }
       }
     };
@@ -20,19 +36,43 @@ export default function useUserType(session) {
     checkExistingRole();
   }, [session]);
 
-  const handleRoleSelection = (isProfessional) => {
+  const handleRoleSelection = async (isProfessional) => {
     const type = isProfessional ? 'professional' : 'client';
-    setUserType(type);
-    setShowRoleConfirmation(false);
-    if (session?.user?.id) {
-      localStorage.setItem(`userType-${session.user.id}`, type);
+    try {
+      const response = await fetch('/api/setRole', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${session.access_token}`,
+        },
+        body: JSON.stringify({ role: type }),
+      });
+
+      if (!response.ok) throw new Error('Failed to save role');
+      
+      setUserType(type);
+      setShowRoleConfirmation(false);
+    } catch (error) {
+      console.error('Error saving role:', error);
     }
   };
 
-  const handleRoleChange = (newType) => {
-    setUserType(newType);
-    if (session?.user?.id) {
-      localStorage.setItem(`userType-${session.user.id}`, newType);
+  const handleRoleChange = async (newType) => {
+    try {
+      const response = await fetch('/api/setRole', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${session.access_token}`,
+        },
+        body: JSON.stringify({ role: newType }),
+      });
+
+      if (!response.ok) throw new Error('Failed to update role');
+      
+      setUserType(newType);
+    } catch (error) {
+      console.error('Error updating role:', error);
     }
   };
 
@@ -40,6 +80,7 @@ export default function useUserType(session) {
     userType,
     showRoleConfirmation,
     handleRoleSelection,
-    handleRoleChange
+    handleRoleChange,
+    loading
   };
 }

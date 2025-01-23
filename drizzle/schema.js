@@ -25,3 +25,10 @@ export const profiles = pgTable('profiles', {
   createdAt: timestamp('created_at').defaultNow(),
   updatedAt: timestamp('updated_at').defaultNow(),
 });
+
+export const roles = pgTable('roles', {
+  userId: uuid('user_id').primaryKey(),
+  role: text('role').notNull(),
+  createdAt: timestamp('created_at').defaultNow(),
+  updatedAt: timestamp('updated_at').defaultNow(),
+});
