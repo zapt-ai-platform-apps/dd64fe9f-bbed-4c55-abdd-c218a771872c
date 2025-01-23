@@ -21,7 +21,8 @@ export async function authenticateUser(req) {
   } = await supabase.auth.getUser(token);
 
   if (error) {
-    throw new Error('Invalid token');
+    console.error('Authentication error:', error.message);
+    throw new Error('INVALID_TOKEN');
   }
 
   return user;

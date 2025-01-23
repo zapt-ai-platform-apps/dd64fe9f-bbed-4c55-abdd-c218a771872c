@@ -39,6 +39,9 @@ export default async function handler(req, res) {
     res.status(200).json({ message: 'Favorite added' });
   } catch (error) {
     Sentry.captureException(error);
+    if (error.message === 'INVALID_TOKEN') {
+      return res.status(401).json({ error: 'Invalid or expired token' });
+    }
     if (error.message.includes('duplicate key value')) {
       return res.status(409).json({ error: 'Professional already in favorites' });
     }

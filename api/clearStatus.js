@@ -22,6 +22,9 @@ export default async function handler(req, res) {
     res.status(200).json({ message: 'Status cleared' });
   } catch (error) {
     Sentry.captureException(error);
+    if (error.message === 'INVALID_TOKEN') {
+      return res.status(401).json({ error: 'Invalid or expired token' });
+    }
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }

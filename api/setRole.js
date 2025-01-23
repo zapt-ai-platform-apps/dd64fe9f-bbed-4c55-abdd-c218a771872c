@@ -44,6 +44,9 @@ export default async function handler(req, res) {
     res.status(200).json({ message: 'Role updated' });
   } catch (error) {
     Sentry.captureException(error);
+    if (error.message === 'INVALID_TOKEN') {
+      return res.status(401).json({ error: 'Invalid or expired token' });
+    }
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }
