@@ -9,7 +9,7 @@ export const features = [
   {
     icon: UserGroupIcon,
     title: "Client Management",
-    description: "Maintain your professional network with integrated favorite tracking"
+    description: "Easily track your favorite professionals and view their real-time status updates"
   },
   {
     icon: DevicePhoneMobileIcon,
@@ -34,11 +34,11 @@ export const testimonials = [
     dataImageRequest: "professional male consultant working on laptop"
   },
   {
-    name: "Emma Wilson",
-    role: "Massage Therapist",
-    text: "Clients love the transparency - no more missed appointments",
+    name: "David Martinez",
+    role: "Client",
+    text: "Now I can check my hairdresser's status before heading out - it's saved me so much time!",
     image: "PLACEHOLDER",
-    dataImageRequest: "female massage therapist in clinic"
+    dataImageRequest: "happy male client checking phone"
   }
 ];
 
