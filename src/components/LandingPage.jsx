@@ -1,10 +1,10 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import HeroSection from './LandingPageSections/HeroSection';
 import FeaturesGrid from './LandingPageSections/FeaturesGrid';
 import TestimonialsSection from './LandingPageSections/TestimonialsSection';
 import FAQSection from './LandingPageSections/FAQSection';
 import FinalCTA from './LandingPageSections/FinalCTA';
+import GetStartedButton from './GetStartedButton'; // Import the new component
 import { features, testimonials, faqs } from '../data/landingPageData';
 
 const LandingPage = ({ onShowAuth }) => {
@@ -17,25 +17,8 @@ const LandingPage = ({ onShowAuth }) => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <HeroSection />
-
-        <FinalCTA onShowAuth={onShowAuth} />
         
-        <div className="flex justify-center mb-12">
-          <button
-            onClick={() => {
-              console.log('onShowAuth called!');
-              onShowAuth()
-            }}
-            className="btn-primary px-8 py-4 text-lg flex items-center gap-2 hover:bg-primary/90 transition-all group mx-auto"
-          >
-            Get Started Free NOW
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clipRule="evenodd" />
-            </svg>
-          </button>
-        </div>
-
-        <FinalCTA onShowAuth={onShowAuth} />
+        <GetStartedButton onShowAuth={onShowAuth} />
         
         <div className="py-24">
           <FeaturesGrid features={features} />
