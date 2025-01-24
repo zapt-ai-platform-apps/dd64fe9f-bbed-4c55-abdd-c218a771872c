@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion';
+import FeatureCard from './FeatureCard';
+import GetStartedButton from './GetStartedButton';
 
 export default function HeroSection({ onShowAuth }) {
   return (
@@ -8,26 +10,31 @@ export default function HeroSection({ onShowAuth }) {
       transition={{ duration: 0.8 }}
       className="text-center mb-24"
     >
-      <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-        WhatsApp Status Updates for Professionals
-      </h1>
-      <p className="text-xl text-indigo-200 mb-8 max-w-3xl mx-auto">
-        Keep your clients informed through simple WhatsApp updates. No apps to install, no complicated systems - just direct WhatsApp communication.
-      </p>
-      
-      <div className="flex justify-center gap-4">
-        <button
-          onClick={onShowAuth}
-          className="btn-primary px-8 py-4 text-lg flex items-center gap-2 hover:bg-primary/90 transition-all group"
-        >
-          Get Started Free
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clipRule="evenodd" />
-          </svg>
-        </button>
+      <div className="mb-8">
+        <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
+          <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            StatusPros
+          </span>
+        </h1>
+        <h2 className="text-2xl md:text-3xl font-semibold text-gray-200">
+          Professional Status Updates via WhatsApp
+        </h2>
       </div>
+      
+      <p className="text-xl text-indigo-200 mb-8 max-w-3xl mx-auto">
+        Update all your clients at once through WhatsApp. Share your status once and let clients check your availability directly via WhatsApp - no individual messages needed.
+      </p>
+
+      <div className="flex justify-center gap-4 mb-8">
+        <FeatureCard />
+      </div>
+
+      <div className="flex justify-center gap-4">
+        <GetStartedButton onShowAuth={onShowAuth} />
+      </div>
+      
       <div className="mt-8 text-sm text-gray-300">
-        Trusted by hairstylists, therapists and service professionals using WhatsApp
+        Used by hairstylists, therapists, and service professionals worldwide
       </div>
     </motion.div>
   );

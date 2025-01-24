@@ -1,20 +1,20 @@
-import { SparklesIcon, ClockIcon, UserGroupIcon, ChatBubbleBottomCenterTextIcon } from '@heroicons/react/24/outline';
+import { SparklesIcon, LinkIcon, ChatBubbleBottomCenterTextIcon, UserGroupIcon } from '@heroicons/react/24/outline';
 
 export const features = [
   {
-    icon: ClockIcon,
-    title: "Instant WhatsApp Updates",
-    description: "Broadcast your availability changes directly to clients via WhatsApp"
-  },
-  {
-    icon: UserGroupIcon,
-    title: "Client Transparency",
-    description: "Keep all your clients informed simultaneously with one update"
+    icon: LinkIcon,
+    title: "Share Your Profile Link",
+    description: "Create a personalized profile with your WhatsApp number and professional information"
   },
   {
     icon: ChatBubbleBottomCenterTextIcon,
-    title: "Direct WhatsApp Communication", 
-    description: "Clients can message you directly through your preferred WhatsApp number"
+    title: "Update WhatsApp Status", 
+    description: "Post availability updates that clients can see directly in WhatsApp"
+  },
+  {
+    icon: UserGroupIcon,
+    title: "Client Messaging",
+    description: "Clients message you directly via your WhatsApp button - no number sharing needed"
   }
 ];
 
@@ -22,27 +22,27 @@ export const testimonials = [
   {
     name: "Sarah Johnson",
     role: "Salon Owner",
-    text: "Saves me hours each week - one WhatsApp broadcast updates all my clients"
+    text: "Clients message me directly on WhatsApp when they see my 'Available Now' status"
   },
   {
     name: "Michael Chen",
     role: "Massage Therapist",
-    text: "My clients appreciate the instant WhatsApp updates when I'm running late"
+    text: "One WhatsApp status update informs all my clients simultaneously"
   },
   {
     name: "Emma Wilson",
     role: "Personal Trainer",
-    text: "Simplified my client communication to a single WhatsApp status update"
+    text: "The WhatsApp button in my profile makes client communication effortless"
   }
 ];
 
 export const faqs = [
   {
-    question: "How does the WhatsApp integration work?",
-    answer: "Share your WhatsApp number in your profile so clients can message you directly"
+    question: "How do clients contact me?",
+    answer: "Your profile includes a WhatsApp button that clients click to message you directly"
   },
   {
-    question: "Can clients contact me without my personal number?",
-    answer: "Yes! We show your WhatsApp number only to clients who you've shared your profile with"
+    question: "Do I need to install anything?",
+    answer: "No installations needed - we use your existing WhatsApp account"
   }
 ];
