@@ -1,4 +1,4 @@
-import { SparklesIcon, ClockIcon, UserGroupIcon, ChartBarIcon, DevicePhoneMobileIcon, ShieldCheckIcon } from '@heroicons/react/24/outline';
+import { SparklesIcon, ClockIcon, UserGroupIcon, DevicePhoneMobileIcon, ShieldCheckIcon } from '@heroicons/react/24/outline';
 
 export const features = [
   {
@@ -12,24 +12,14 @@ export const features = [
     description: "Easily manage your professional network and client relationships"
   },
   {
-    icon: ChartBarIcon,
-    title: "Availability Analytics",
-    description: "Track how clients interact with your status updates"
-  },
-  {
     icon: DevicePhoneMobileIcon,
-    title: "Mobile Optimized",
+    title: "Mobile Optimized", 
     description: "Full functionality on any device, anywhere"
   },
   {
     icon: ShieldCheckIcon,
     title: "Secure Platform",
     description: "Enterprise-grade security protecting your data"
-  },
-  {
-    icon: SparklesIcon,
-    title: "Smart Notifications",
-    description: "Automatic reminders and update suggestions"
   }
 ];
 
