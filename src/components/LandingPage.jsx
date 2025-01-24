@@ -17,6 +17,8 @@ const LandingPage = ({ onShowAuth }) => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <HeroSection />
+
+        <FinalCTA onShowAuth={onShowAuth} />
         
         <div className="flex justify-center mb-12">
           <button
@@ -32,6 +34,8 @@ const LandingPage = ({ onShowAuth }) => {
             </svg>
           </button>
         </div>
+
+        <FinalCTA onShowAuth={onShowAuth} />
         
         <div className="py-24">
           <FeaturesGrid features={features} />
