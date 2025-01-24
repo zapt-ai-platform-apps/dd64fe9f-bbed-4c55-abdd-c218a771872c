@@ -7,7 +7,7 @@ const GetStartedButton = ({ onShowAuth }) => {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="relative rounded-3xl overflow-hidden my-12"
+      className="relative rounded-3xl overflow-hidden my-12 z-20" {/* Add z-20 here */}
     >
       {/* Gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary to-accent opacity-90" />
