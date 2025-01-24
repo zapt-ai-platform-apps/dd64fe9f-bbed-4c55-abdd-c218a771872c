@@ -14,7 +14,7 @@ export default function FinalCTA({ onShowAuth }) {
           Transform Your Client Communication Today
         </h2>
         <p className="text-xl text-gray-100 mb-8 max-w-2xl mx-auto">
-          Join thousands of professionals enhancing their availability management
+          Always keep your clients updated
         </p>
         <button
           type="button"
