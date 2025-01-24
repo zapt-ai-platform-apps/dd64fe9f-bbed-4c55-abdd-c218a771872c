@@ -6,18 +6,23 @@ export default function FinalCTA({ onShowAuth }) {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="text-center card-glass p-12"
+      className="relative rounded-3xl overflow-hidden"
     >
-      <h2 className="text-3xl font-display font-bold mb-6">Ready to Transform Your Client Communication?</h2>
-      <p className="text-gray-300 mb-8 max-w-xl mx-auto">
-        Join thousands of professionals already streamlining their availability management
-      </p>
-      <button
-        onClick={onShowAuth}
-        className="btn-primary px-8 py-4 text-lg mx-auto"
-      >
-        Start Free Today
-      </button>
+      <div className="absolute inset-0 bg-gradient-to-br from-primary to-accent opacity-90" />
+      <div className="relative z-10 text-center p-16">
+        <h2 className="text-4xl font-display font-bold text-white mb-6">
+          Transform Your Client Communication Today
+        </h2>
+        <p className="text-xl text-gray-100 mb-8 max-w-2xl mx-auto">
+          Join thousands of professionals enhancing their availability management
+        </p>
+        <button
+          onClick={onShowAuth}
+          className="btn-primary px-10 py-5 text-lg bg-white text-primary hover:bg-gray-100 hover:text-primary-dark transition-colors"
+        >
+          Start Free Now
+        </button>
+      </div>
     </motion.div>
   );
 }
