@@ -4,7 +4,7 @@ import FeaturesGrid from './LandingPageSections/FeaturesGrid';
 import TestimonialsSection from './LandingPageSections/TestimonialsSection';
 import FAQSection from './LandingPageSections/FAQSection';
 import FinalCTA from './LandingPageSections/FinalCTA';
-import GetStartedButton from './GetStartedButton'; // Import the new component
+import GetStartedButton from './LandingPageSections/GetStartedButton';
 import { features, testimonials, faqs } from '../data/landingPageData';
 
 const LandingPage = ({ onShowAuth }) => {
