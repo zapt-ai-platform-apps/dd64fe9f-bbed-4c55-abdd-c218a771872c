@@ -2,7 +2,7 @@ export default function GetStartedButton({ onShowAuth }) {
   return (
     <button
       onClick={onShowAuth}
-      className="btn-primary px-8 py-4 text-lg flex items-center gap-2 hover:bg-primary/90 transition-all group"
+      className="btn-primary px-8 py-4 text-lg flex items-center gap-2 hover:bg-primary/90 transition-all group mx-auto"
     >
       Get Started Free
       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
