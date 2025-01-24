@@ -27,16 +27,9 @@ export const testimonials = [
     dataImageRequest: "mobile hairdresser with travel kit smiling"
   },
   {
-    name: "Michael Chen",
-    role: "Home Fitness Trainer",
-    text: "Essential for managing my house call schedule and client expectations",
-    image: "PLACEHOLDER",
-    dataImageRequest: "fitness trainer demonstrating exercise in living room"
-  },
-  {
     name: "David Martinez",
     role: "Client",
-    text: "Now I know exactly when my barber is arriving - perfect for my busy schedule",
+    text: "Now I know exactly when my hairdresser is arriving - perfect for my busy schedule",
     image: "PLACEHOLDER",
     dataImageRequest: "happy male client checking phone"
   },
