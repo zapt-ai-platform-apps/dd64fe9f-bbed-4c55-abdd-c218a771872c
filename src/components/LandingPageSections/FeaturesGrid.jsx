@@ -4,7 +4,7 @@ import FeatureCard from './FeatureCard';
 
 export default function FeaturesGrid({ features = [] }) {
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6 mb-24">
+    <div className="grid grid-cols-1 gap-6 mb-24 max-w-2xl mx-auto">
       {features.map((feature, index) => (
         <motion.div
           key={feature.title}

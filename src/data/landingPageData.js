@@ -18,11 +18,6 @@ export const testimonials = [
     name: "Michael Chen",
     role: "Consultant",
     text: "Essential tool for managing client expectations and my schedule"
-  },
-  {
-    name: "Emma Wilson",
-    role: "Personal Trainer",
-    text: "Clients appreciate the real-time updates and it's reduced no-shows significantly"
   }
 ];
 
