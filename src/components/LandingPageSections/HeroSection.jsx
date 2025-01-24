@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import GetStartedButton from './GetStartedButton';
 
-export default function HeroSection({ onShowAuth }) => {
+export default function HeroSection({ onShowAuth }) {
   return (
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
