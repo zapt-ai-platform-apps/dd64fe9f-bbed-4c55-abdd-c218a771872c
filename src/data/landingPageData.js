@@ -9,7 +9,7 @@ export const features = [
   {
     icon: UserGroupIcon,
     title: "Client Management",
-    description: "Easily track your favorite professionals and view their real-time status updates"
+    description: "Perfect for mobile professionals - let clients track your arrival time and status for in-home services"
   },
   {
     icon: DevicePhoneMobileIcon,
@@ -21,24 +21,31 @@ export const features = [
 export const testimonials = [
   {
     name: "Sarah Johnson",
-    role: "Salon Owner",
-    text: "Reduced client confusion by 80% - they always know my current availability",
+    role: "Mobile Hairdresser",
+    text: "My clients love knowing exactly when I'll arrive - no more missed calls or waiting around",
     image: "PLACEHOLDER",
-    dataImageRequest: "female salon owner smiling"
+    dataImageRequest: "mobile hairdresser with travel kit smiling"
   },
   {
     name: "Michael Chen",
-    role: "Consultant",
-    text: "Essential tool for managing multiple client expectations efficiently",
+    role: "Home Fitness Trainer",
+    text: "Essential for managing my house call schedule and client expectations",
     image: "PLACEHOLDER",
-    dataImageRequest: "professional male consultant working on laptop"
+    dataImageRequest: "fitness trainer demonstrating exercise in living room"
   },
   {
     name: "David Martinez",
     role: "Client",
-    text: "Now I can check my hairdresser's status before heading out - it's saved me so much time!",
+    text: "Now I know exactly when my barber is arriving - perfect for my busy schedule",
     image: "PLACEHOLDER",
     dataImageRequest: "happy male client checking phone"
+  },
+  {
+    name: "Emily Rodriguez",
+    role: "Mobile Massage Therapist",
+    text: "Changed how I communicate with clients - they always know if I'm running late",
+    image: "PLACEHOLDER", 
+    dataImageRequest: "therapist setting up massage table in home"
   }
 ];
 
