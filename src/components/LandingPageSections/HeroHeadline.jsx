@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
-import GetStartedButton from './GetStartedButton';
 
-export default function HeroHeadline({ onShowAuth }) {
+export default function HeroHeadline() {
   return (
     <div className="mb-16">
       <motion.h1 
@@ -31,15 +30,6 @@ export default function HeroHeadline({ onShowAuth }) {
       >
         Streamline client communication with real-time status updates
       </motion.p>
-
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.8 }}
-        className="flex justify-center"
-      >
-        <GetStartedButton onShowAuth={onShowAuth} />
-      </motion.div>
     </div>
   );
 }
