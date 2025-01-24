@@ -1,6 +1,9 @@
+import React from 'react';
+
 export default function GetStartedButton({ onShowAuth }) {
   return (
     <button
+      type="button"
       onClick={onShowAuth}
       className="btn-primary px-8 py-4 text-lg flex items-center gap-2 hover:bg-primary/90 transition-all group mx-auto"
     >

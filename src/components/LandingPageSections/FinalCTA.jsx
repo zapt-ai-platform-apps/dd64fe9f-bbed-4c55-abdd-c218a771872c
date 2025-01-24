@@ -17,6 +17,7 @@ export default function FinalCTA({ onShowAuth }) {
           Join thousands of professionals enhancing their availability management
         </p>
         <button
+          type="button"
           onClick={onShowAuth}
           className="btn-primary px-10 py-5 text-lg bg-white text-primary hover:bg-gray-100 hover:text-primary-dark transition-colors"
         >
