@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import HeroHeadline from './HeroHeadline';
 import HeroImage from './HeroImage';
-import GetStartedButton from './GetStartedButton';
 
 export default function HeroSection({ onShowAuth }) {
   return (
