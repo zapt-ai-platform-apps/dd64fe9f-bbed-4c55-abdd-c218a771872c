@@ -1,7 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { supabase } from '../supabaseClient';
-import { features, testimonials, faqs } from '../data/landingPageData';
 import HeroSection from './LandingPageSections/HeroSection';
 import FeaturesGrid from './LandingPageSections/FeaturesGrid';
 import TestimonialsSection from './LandingPageSections/TestimonialsSection';
@@ -18,11 +16,11 @@ const LandingPage = ({ onShowAuth }) => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <HeroSection onShowAuth={onShowAuth} />
         
-        <FeaturesGrid features={features} />
+        <FeaturesGrid />
+        
+        <TestimonialsSection />
 
-        <TestimonialsSection testimonials={testimonials} />
-
-        <FAQSection faqs={faqs} />
+        <FAQSection />
 
         <FinalCTA onShowAuth={onShowAuth} />
 

@@ -9,10 +9,10 @@ export default function HeroSection({ onShowAuth }) {
       className="text-center mb-24"
     >
       <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-        Update All Clients At Once
+        WhatsApp Status Updates for Professionals
       </h1>
       <p className="text-xl text-indigo-200 mb-8 max-w-3xl mx-auto">
-        Professional time management made simple. Broadcast your availability status once and automatically notify all your clients - no individual messages needed.
+        Keep your clients informed through simple WhatsApp updates. No apps to install, no complicated systems - just direct WhatsApp communication.
       </p>
       
       <div className="flex justify-center gap-4">
@@ -27,7 +27,7 @@ export default function HeroSection({ onShowAuth }) {
         </button>
       </div>
       <div className="mt-8 text-sm text-gray-300">
-        Trusted by hairstylists, therapists, consultants and service professionals worldwide
+        Trusted by hairstylists, therapists and service professionals using WhatsApp
       </div>
     </motion.div>
   );

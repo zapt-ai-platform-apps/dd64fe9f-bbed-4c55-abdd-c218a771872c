@@ -1,25 +1,20 @@
-import { SparklesIcon, ClockIcon, UserGroupIcon, MegaphoneIcon, ShieldCheckIcon } from '@heroicons/react/24/outline';
+import { SparklesIcon, ClockIcon, UserGroupIcon, ChatBubbleBottomCenterTextIcon } from '@heroicons/react/24/outline';
 
 export const features = [
   {
     icon: ClockIcon,
-    title: "One-Click Status Updates",
-    description: "Broadcast delays, availability changes or special announcements in seconds"
+    title: "Instant WhatsApp Updates",
+    description: "Broadcast your availability changes directly to clients via WhatsApp"
   },
   {
     icon: UserGroupIcon,
-    title: "Automatic Client Notifications",
-    description: "Connected clients receive instant updates through their preferred channels"
+    title: "Client Transparency",
+    description: "Keep all your clients informed simultaneously with one update"
   },
   {
-    icon: MegaphoneIcon,
-    title: "Multi-Platform Broadcast", 
-    description: "Reach clients via SMS, WhatsApp, email and in-app notifications"
-  },
-  {
-    icon: ShieldCheckIcon,
-    title: "Client Privacy Protection",
-    description: "Never share client contact details - we handle secure communication"
+    icon: ChatBubbleBottomCenterTextIcon,
+    title: "Direct WhatsApp Communication", 
+    description: "Clients can message you directly through your preferred WhatsApp number"
   }
 ];
 
@@ -27,31 +22,27 @@ export const testimonials = [
   {
     name: "Sarah Johnson",
     role: "Salon Owner",
-    text: "Saved 10+ hours/month on client communications. Our clients love the transparency!"
+    text: "Saves me hours each week - one WhatsApp broadcast updates all my clients"
   },
   {
     name: "Michael Chen",
     role: "Massage Therapist",
-    text: "Running late? Two taps and all my afternoon clients are notified. Game changer!"
+    text: "My clients appreciate the instant WhatsApp updates when I'm running late"
   },
   {
     name: "Emma Wilson",
     role: "Personal Trainer",
-    text: "Reduced no-shows by 40% with automatic session reminders. Worth every penny."
+    text: "Simplified my client communication to a single WhatsApp status update"
   }
 ];
 
 export const faqs = [
   {
-    question: "How does this save me time?",
-    answer: "Instead of texting/calling each client individually, update your status once and we handle all notifications automatically."
+    question: "How does the WhatsApp integration work?",
+    answer: "Share your WhatsApp number in your profile so clients can message you directly"
   },
   {
-    question: "What if I need to cancel appointments?",
-    answer: "Our premium plan integrates with calendars to automatically reschedule appointments when you update your status."
-  },
-  {
-    question: "Can clients contact me directly?",
-    answer: "Yes! We provide secure communication channels while protecting your personal contact information."
+    question: "Can clients contact me without my personal number?",
+    answer: "Yes! We show your WhatsApp number only to clients who you've shared your profile with"
   }
 ];
