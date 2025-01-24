@@ -10,7 +10,7 @@ import { features, testimonials, faqs } from '../data/landingPageData';
 const LandingPage = ({ onShowAuth }) => {
   return (
     <div className="min-h-screen relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-blue-900 to-purple-900 opacity-95" />
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-blue-900 to-indigo-900 opacity-95" />
       <div className="absolute inset-0 bg-[url('PLACEHOLDER')] bg-cover bg-center opacity-10 mix-blend-soft-light" 
            data-image-request="abstract connected dots network" />
 

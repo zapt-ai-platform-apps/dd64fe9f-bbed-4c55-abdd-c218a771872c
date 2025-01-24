@@ -1,20 +1,25 @@
-import { SparklesIcon, LinkIcon, ChatBubbleBottomCenterTextIcon, UserGroupIcon } from '@heroicons/react/24/outline';
+import { SparklesIcon, LinkIcon, BellAlertIcon, UserGroupIcon } from '@heroicons/react/24/outline';
 
 export const features = [
   {
-    icon: LinkIcon,
-    title: "Share Your Profile Link",
-    description: "Create a personalized profile with your WhatsApp number and professional information"
+    icon: SparklesIcon,
+    title: "Instant Status Updates",
+    description: "Broadcast your current availability to all clients with a single update"
   },
   {
-    icon: ChatBubbleBottomCenterTextIcon,
-    title: "Update WhatsApp Status", 
-    description: "Post availability updates that clients can see directly in WhatsApp"
+    icon: BellAlertIcon,
+    title: "Real-Time Notifications", 
+    description: "Clients receive immediate updates when your status changes"
   },
   {
     icon: UserGroupIcon,
-    title: "Client Messaging",
-    description: "Clients message you directly via your WhatsApp button - no number sharing needed"
+    title: "Client Management",
+    description: "Easily manage client access and visibility of your availability"
+  },
+  {
+    icon: LinkIcon,
+    title: "Shareable Profile",
+    description: "Create a professional profile with your availability schedule and updates"
   }
 ];
 
@@ -22,27 +27,27 @@ export const testimonials = [
   {
     name: "Sarah Johnson",
     role: "Salon Owner",
-    text: "Clients message me directly on WhatsApp when they see my 'Available Now' status"
+    text: "Saves me hours each week - clients know my availability without constant check-ins"
   },
   {
     name: "Michael Chen",
-    role: "Massage Therapist",
-    text: "One WhatsApp status update informs all my clients simultaneously"
+    role: "Consultant",
+    text: "Essential tool for managing client expectations and my schedule"
   },
   {
     name: "Emma Wilson",
     role: "Personal Trainer",
-    text: "The WhatsApp button in my profile makes client communication effortless"
+    text: "Clients appreciate the real-time updates and it's reduced no-shows significantly"
   }
 ];
 
 export const faqs = [
   {
-    question: "How do clients contact me?",
-    answer: "Your profile includes a WhatsApp button that clients click to message you directly"
+    question: "How do clients receive updates?",
+    answer: "Clients can view your real-time status through your shareable profile link"
   },
   {
-    question: "Do I need to install anything?",
-    answer: "No installations needed - we use your existing WhatsApp account"
+    question: "Can I control who sees my status?",
+    answer: "Yes! You manage exactly which clients have access to your status updates"
   }
 ];

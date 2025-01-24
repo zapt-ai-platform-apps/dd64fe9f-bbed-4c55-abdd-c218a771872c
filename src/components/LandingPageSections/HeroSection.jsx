@@ -1,8 +1,7 @@
 import { motion } from 'framer-motion';
-import FeatureCard from './FeatureCard';
 import GetStartedButton from './GetStartedButton';
 
-export default function HeroSection({ onShowAuth }) {
+export default function HeroSection({ onShowAuth }) => {
   return (
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
@@ -17,24 +16,20 @@ export default function HeroSection({ onShowAuth }) {
           </span>
         </h1>
         <h2 className="text-2xl md:text-3xl font-semibold text-gray-200">
-          Professional Status Updates via WhatsApp
+          Real-Time Professional Status Updates
         </h2>
       </div>
       
-      <p className="text-xl text-indigo-200 mb-8 max-w-3xl mx-auto">
-        Update all your clients at once through WhatsApp. Share your status once and let clients check your availability directly via WhatsApp - no individual messages needed.
+      <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+        Instantly broadcast your availability to all clients. Update once and let everyone know your status - no individual messages needed.
       </p>
-
-      <div className="flex justify-center gap-4 mb-8">
-        <FeatureCard />
-      </div>
 
       <div className="flex justify-center gap-4">
         <GetStartedButton onShowAuth={onShowAuth} />
       </div>
       
       <div className="mt-8 text-sm text-gray-300">
-        Used by hairstylists, therapists, and service professionals worldwide
+        Trusted by service professionals worldwide to streamline client communication
       </div>
     </motion.div>
   );
