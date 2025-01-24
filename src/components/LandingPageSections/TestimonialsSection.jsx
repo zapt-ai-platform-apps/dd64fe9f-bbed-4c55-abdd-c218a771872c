@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import { ClockIcon } from '@heroicons/react/24/outline';
+import PropTypes from 'prop-types';
 
-export default function TestimonialsSection({ testimonials }) {
+export default function TestimonialsSection({ testimonials = [] }) {
   return (
     <div className="mb-24">
       <h2 className="text-3xl font-display font-bold text-center mb-12">Trusted by Busy Professionals</h2>
@@ -31,3 +32,13 @@ export default function TestimonialsSection({ testimonials }) {
     </div>
   );
 }
+
+TestimonialsSection.propTypes = {
+  testimonials: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      role: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired
+    })
+  )
+};

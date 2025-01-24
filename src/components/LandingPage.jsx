@@ -5,6 +5,7 @@ import FeaturesGrid from './LandingPageSections/FeaturesGrid';
 import TestimonialsSection from './LandingPageSections/TestimonialsSection';
 import FAQSection from './LandingPageSections/FAQSection';
 import FinalCTA from './LandingPageSections/FinalCTA';
+import { features, testimonials, faqs } from '../data/landingPageData';
 
 const LandingPage = ({ onShowAuth }) => {
   return (
@@ -16,11 +17,11 @@ const LandingPage = ({ onShowAuth }) => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <HeroSection onShowAuth={onShowAuth} />
         
-        <FeaturesGrid />
+        <FeaturesGrid features={features} />
         
-        <TestimonialsSection />
+        <TestimonialsSection testimonials={testimonials} />
 
-        <FAQSection />
+        <FAQSection faqs={faqs} />
 
         <FinalCTA onShowAuth={onShowAuth} />
 

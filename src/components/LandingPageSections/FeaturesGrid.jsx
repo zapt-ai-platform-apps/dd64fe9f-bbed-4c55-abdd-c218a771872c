@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
 
-export default function FeaturesGrid({ features }) {
+export default function FeaturesGrid({ features = [] }) {
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
       {features.map((feature, index) => (
@@ -21,3 +22,13 @@ export default function FeaturesGrid({ features }) {
     </div>
   );
 }
+
+FeaturesGrid.propTypes = {
+  features: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      icon: PropTypes.elementType.isRequired
+    })
+  )
+};

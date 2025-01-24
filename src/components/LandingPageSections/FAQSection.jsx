@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
 
-export default function FAQSection({ faqs }) {
+export default function FAQSection({ faqs = [] }) {
   return (
     <div className="mb-24">
       <h2 className="text-3xl font-display font-bold text-center mb-12">Frequently Asked Questions</h2>
@@ -22,3 +23,12 @@ export default function FAQSection({ faqs }) {
     </div>
   );
 }
+
+FAQSection.propTypes = {
+  faqs: PropTypes.arrayOf(
+    PropTypes.shape({
+      question: PropTypes.string.isRequired,
+      answer: PropTypes.string.isRequired
+    })
+  )
+};
