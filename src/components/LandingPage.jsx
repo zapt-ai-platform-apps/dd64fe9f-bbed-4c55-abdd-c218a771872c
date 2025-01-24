@@ -17,10 +17,13 @@ const LandingPage = ({ onShowAuth }) => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <HeroSection />
-          <div className="flex justify-center mb-12">
+        
+        <div className="flex justify-center mb-12">
           <button
-            type="button"
-            onClick={onShowAuth}
+            onClick={() => {
+              console.log('onShowAuth called!');
+              onShowAuth()
+            }}
             className="btn-primary px-8 py-4 text-lg flex items-center gap-2 hover:bg-primary/90 transition-all group mx-auto"
           >
             Get Started Free
