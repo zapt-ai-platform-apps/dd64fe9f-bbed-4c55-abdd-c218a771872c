@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import HeroHeadline from './HeroHeadline';
 
-export default function HeroSection({ onShowAuth }) {
+export default function HeroSection() {
   return (
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
