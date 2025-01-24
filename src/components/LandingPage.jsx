@@ -24,7 +24,7 @@ const LandingPage = ({ onShowAuth }) => {
           transition={{ delay: 0.8 }}
           className="flex justify-center mb-12"
         >
-          <div className="pointer-events-auto">
+          <div>
             <button
               type="button"
               onClick={onShowAuth}
