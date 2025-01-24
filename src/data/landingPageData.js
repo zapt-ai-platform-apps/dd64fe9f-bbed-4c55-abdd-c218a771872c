@@ -15,21 +15,6 @@ export const features = [
     icon: DevicePhoneMobileIcon,
     title: "Mobile Optimized",
     description: "Full responsive design works seamlessly across all devices"
-  },
-  {
-    icon: ChartBarIcon,
-    title: "Performance Insights",
-    description: "Track client engagement with built-in analytics dashboard"
-  },
-  {
-    icon: BellAlertIcon,
-    title: "Smart Notifications",
-    description: "Automatic reminders and status change alerts"
-  },
-  {
-    icon: LinkIcon,
-    title: "Shareable Profiles",
-    description: "Beautiful personal profile pages with unique sharing links"
   }
 ];
 
@@ -65,9 +50,5 @@ export const faqs = [
   {
     question: "Is my contact information secure?",
     answer: "We use enterprise-grade security to protect all personal data"
-  },
-  {
-    question: "Can I use this internationally?",
-    answer: "Yes! Works globally with multi-language support"
   }
 ];
