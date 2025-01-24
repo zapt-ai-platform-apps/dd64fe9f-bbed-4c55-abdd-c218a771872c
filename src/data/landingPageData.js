@@ -5,21 +5,6 @@ export const features = [
     icon: SparklesIcon,
     title: "Instant Status Updates",
     description: "Broadcast your current availability to all clients with a single update"
-  },
-  {
-    icon: BellAlertIcon,
-    title: "Real-Time Notifications", 
-    description: "Clients receive immediate updates when your status changes"
-  },
-  {
-    icon: UserGroupIcon,
-    title: "Client Management",
-    description: "Easily manage client access and visibility of your availability"
-  },
-  {
-    icon: LinkIcon,
-    title: "Shareable Profile",
-    description: "Create a professional profile with your availability schedule and updates"
   }
 ];
 
