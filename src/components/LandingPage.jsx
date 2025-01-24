@@ -16,7 +16,7 @@ const LandingPage = ({ onShowAuth }) => {
            data-image-request="abstract connected dots network" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <HeroSection onShowAuth={onShowAuth} />
+        <HeroSection />
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
