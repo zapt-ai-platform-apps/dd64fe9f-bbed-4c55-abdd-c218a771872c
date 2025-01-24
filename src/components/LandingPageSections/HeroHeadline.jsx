@@ -29,7 +29,7 @@ export default function HeroHeadline({ onShowAuth }) {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.6 }}
       >
-        Streamline client communication with real-time status updates and instant availability sharing
+        Streamline client communication with real-time status updates
       </motion.p>
 
       <motion.div
