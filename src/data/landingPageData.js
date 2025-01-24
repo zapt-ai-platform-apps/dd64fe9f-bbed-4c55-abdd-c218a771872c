@@ -1,57 +1,57 @@
-import { SparklesIcon, ClockIcon, UserGroupIcon, DevicePhoneMobileIcon, ShieldCheckIcon } from '@heroicons/react/24/outline';
+import { SparklesIcon, ClockIcon, UserGroupIcon, MegaphoneIcon, ShieldCheckIcon } from '@heroicons/react/24/outline';
 
 export const features = [
   {
     icon: ClockIcon,
-    title: "Real-Time Updates",
-    description: "Instantly broadcast status changes to all your clients"
+    title: "One-Click Status Updates",
+    description: "Broadcast delays, availability changes or special announcements in seconds"
   },
   {
     icon: UserGroupIcon,
-    title: "Client Management",
-    description: "Easily manage your professional network and client relationships"
+    title: "Automatic Client Notifications",
+    description: "Connected clients receive instant updates through their preferred channels"
   },
   {
-    icon: DevicePhoneMobileIcon,
-    title: "Mobile Optimized", 
-    description: "Full functionality on any device, anywhere"
+    icon: MegaphoneIcon,
+    title: "Multi-Platform Broadcast", 
+    description: "Reach clients via SMS, WhatsApp, email and in-app notifications"
   },
   {
     icon: ShieldCheckIcon,
-    title: "Secure Platform",
-    description: "Enterprise-grade security protecting your data"
+    title: "Client Privacy Protection",
+    description: "Never share client contact details - we handle secure communication"
   }
 ];
 
 export const testimonials = [
   {
     name: "Sarah Johnson",
-    role: "Hair Salon Owner",
-    text: "StatusPros has transformed how we communicate with clients. Our no-show rate dropped by 60%!"
+    role: "Salon Owner",
+    text: "Saved 10+ hours/month on client communications. Our clients love the transparency!"
   },
   {
     name: "Michael Chen",
     role: "Massage Therapist",
-    text: "The real-time updates save me so many phone calls. Clients always know my availability."
+    text: "Running late? Two taps and all my afternoon clients are notified. Game changer!"
   },
   {
     name: "Emma Wilson",
     role: "Personal Trainer",
-    text: "My clients love the transparency. It's become an essential part of my business workflow."
+    text: "Reduced no-shows by 40% with automatic session reminders. Worth every penny."
   }
 ];
 
 export const faqs = [
   {
-    question: "How does StatusPros benefit professionals?",
-    answer: "Streamline client communication, reduce missed appointments, and maintain professional presence with minimal effort."
+    question: "How does this save me time?",
+    answer: "Instead of texting/calling each client individually, update your status once and we handle all notifications automatically."
   },
   {
-    question: "Is there a mobile app?",
-    answer: "Our progressive web app works seamlessly on all devices. Add it to your home screen for full app-like experience."
+    question: "What if I need to cancel appointments?",
+    answer: "Our premium plan integrates with calendars to automatically reschedule appointments when you update your status."
   },
   {
-    question: "How secure is my data?",
-    answer: "We use bank-grade encryption and regular security audits to protect your information."
+    question: "Can clients contact me directly?",
+    answer: "Yes! We provide secure communication channels while protecting your personal contact information."
   }
 ];
