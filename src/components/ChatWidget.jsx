@@ -8,7 +8,7 @@ import {
   ChannelHeader
 } from 'stream-chat-react';
 import useChatClient from '../hooks/useChatClient';
-import 'stream-chat-react/dist/css/index.css';
+import 'stream-chat-react/dist/css/v2/index.css';
 
 const ChatWidget = () => {
   const { client, channel } = useChatClient();
