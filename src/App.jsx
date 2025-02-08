@@ -5,6 +5,7 @@ import ClientDashboard from './components/ClientDashboard';
 import AuthSection from './components/AuthSection';
 import LandingPage from './components/LandingPage';
 import ProfessionalConfirmationModal from './components/ProfessionalConfirmationModal';
+import ChatWidget from './components/ChatWidget';
 import useAuth from './hooks/useAuth';
 import useUserType from './hooks/useUserType';
 
@@ -39,6 +40,7 @@ export default function App() {
           </>
         )}
       </div>
+      <ChatWidget />
     </div>
   );
 }

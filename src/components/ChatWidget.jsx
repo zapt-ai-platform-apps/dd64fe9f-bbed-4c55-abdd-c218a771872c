@@ -17,7 +17,7 @@ const ChatWidget = () => {
   if (!client || !channel) return null;
 
   return (
-    <div className="chat-widget">
+    <div className="fixed bottom-4 right-4 z-50 chat-widget">
       <button onClick={() => setIsOpen(!isOpen)} className="btn-primary cursor-pointer">
         {isOpen ? 'Close Chat' : 'Open Chat'}
       </button>
