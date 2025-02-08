@@ -1,5 +1,11 @@
-import { customerSupport } from '@zapt/zapt-js';
+import { initializeZapt } from '@zapt/zapt-js';
 import Sentry from './_sentry.js';
+
+const APP_ID = process.env.VITE_PUBLIC_APP_ID;
+if (!APP_ID) {
+  throw new Error('Missing VITE_PUBLIC_APP_ID environment variable');
+}
+const { customerSupport } = initializeZapt(APP_ID);
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
