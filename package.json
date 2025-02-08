@@ -26,7 +26,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.15.0",
     "stream-chat": "^8.55.0",
-    "stream-chat-react": "^2.11.0"
+    "stream-chat-react": "^8.55.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.4",
