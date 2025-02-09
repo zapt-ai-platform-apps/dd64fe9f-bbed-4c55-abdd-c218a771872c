@@ -23,8 +23,8 @@ const useChatClient = () => {
         const { token, channel: channelData } = await response.json();
         const streamClient = StreamChat.getInstance(import.meta.env.VITE_PUBLIC_STREAM_KEY);
         await streamClient.connectUser(
-          { id: userEmail, name: session?.user?.email || 'User Name' },
-          token
+          { id: streamChatResponse.streamChat.userId },
+          streamChatResponse.streamChat.token
         );
         const streamChannel = streamClient.channel('messaging', channelData.id);
         await streamChannel.watch();
