@@ -10,7 +10,8 @@ const useChatClient = () => {
   useEffect(() => {
     const initChat = async () => {
       try {
-        const userEmail = session?.user?.email || 'user@example.com';
+        const userEmail = session?.user?.email
+        if(!userEmail) throw new Error('Missing userEmail');
         const response = await fetch('/api/customerSupport', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
