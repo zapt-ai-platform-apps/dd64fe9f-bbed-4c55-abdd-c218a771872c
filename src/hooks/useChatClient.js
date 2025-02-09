@@ -20,13 +20,13 @@ const useChatClient = () => {
           console.error('Failed to fetch customer support data');
           return;
         }
-        const { token, channel: channelData } = await response.json();
+        const { token, channelId, userId } = await response.json();
         const streamClient = StreamChat.getInstance(import.meta.env.VITE_PUBLIC_STREAM_KEY);
         await streamClient.connectUser(
-          { id: streamChatResponse.streamChat.userId },
-          streamChatResponse.streamChat.token
+          { id: userId },
+          token
         );
-        const streamChannel = streamClient.channel('messaging', channelData.id);
+        const streamChannel = streamClient.channel('messaging', channelId);
         await streamChannel.watch();
         setClient(streamClient);
         setChannel(streamChannel);
