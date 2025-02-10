@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Chat,
   Channel,
@@ -11,24 +11,10 @@ import useChatClient from '../hooks/useChatClient';
 import 'stream-chat-react/dist/css/v2/index.css';
 
 // Fully custom ChannelHeader with welcome message
-const CustomChannelHeader = ({ channel, showWelcomeMessage }) => {
+const CustomChannelHeader = ({ channel }) => {
   return (
     <div style={{ padding: '10px', borderBottom: '1px solid #e0e0e0' }}>
       <h3 style={{ margin: 0 }}>{channel.data?.name || 'Customer Support'}</h3>
-      {/* Welcome message inside the header */}
-      {showWelcomeMessage && (
-        <div style={{
-          backgroundColor: '#f1f1f1',
-          padding: '10px',
-          borderRadius: '8px',
-          marginTop: '10px',
-          textAlign: 'center',
-          fontStyle: 'italic',
-          color: '#555',
-        }}>
-          <p>Hello! How can we assist you today?</p>
-        </div>
-      )}
     </div>
   );
 };
@@ -36,13 +22,6 @@ const CustomChannelHeader = ({ channel, showWelcomeMessage }) => {
 const ChatWidget = () => {
   const { client, channel } = useChatClient();
   const [isOpen, setIsOpen] = useState(false);
-  const [hasWelcomeMessageBeenShown, setHasWelcomeMessageBeenShown] = useState(false);
-
-  useEffect(() => {
-    if (isOpen && !hasWelcomeMessageBeenShown) {
-      setHasWelcomeMessageBeenShown(true);
-    }
-  }, [isOpen, hasWelcomeMessageBeenShown]);
 
   if (!client || !channel) return null;
 
@@ -74,10 +53,7 @@ const ChatWidget = () => {
             <Channel channel={channel}>
               <Window>
                 {/* Use the custom header with welcome message */}
-                <CustomChannelHeader
-                  channel={channel}
-                  showWelcomeMessage={hasWelcomeMessageBeenShown}
-                />
+                <CustomChannelHeader channel={channel} />
                 <MessageList />
                 <MessageInput placeholder="Type your message here..." />
               </Window>
