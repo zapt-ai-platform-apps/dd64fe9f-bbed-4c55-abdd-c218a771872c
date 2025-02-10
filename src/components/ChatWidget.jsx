@@ -10,11 +10,25 @@ import {
 import useChatClient from '../hooks/useChatClient';
 import 'stream-chat-react/dist/css/v2/index.css';
 
-// Fully custom ChannelHeader (no online user count)
-const CustomChannelHeader = ({ channel }) => {
+// Fully custom ChannelHeader with welcome message
+const CustomChannelHeader = ({ channel, showWelcomeMessage }) => {
   return (
     <div style={{ padding: '10px', borderBottom: '1px solid #e0e0e0' }}>
       <h3 style={{ margin: 0 }}>{channel.data?.name || 'Customer Support'}</h3>
+      {/* Welcome message inside the header */}
+      {showWelcomeMessage && (
+        <div style={{
+          backgroundColor: '#f1f1f1',
+          padding: '10px',
+          borderRadius: '8px',
+          marginTop: '10px',
+          textAlign: 'center',
+          fontStyle: 'italic',
+          color: '#555',
+        }}>
+          <p>Hello! How can we assist you today?</p>
+        </div>
+      )}
     </div>
   );
 };
@@ -55,26 +69,15 @@ const ChatWidget = () => {
       </button>
       {isOpen && (
         <div className="chat-container">
-          {/* Welcome message outside the chat */}
-          {hasWelcomeMessageBeenShown && (
-            <div style={{
-              backgroundColor: '#f1f1f1',
-              padding: '10px',
-              borderRadius: '8px',
-              marginBottom: '10px',
-              textAlign: 'center',
-              fontStyle: 'italic',
-              color: '#555',
-            }}>
-              <p>Hello! How can we assist you today?</p>
-            </div>
-          )}
           {/* Chat window */}
           <Chat client={client}>
             <Channel channel={channel}>
               <Window>
-                {/* Use the custom header */}
-                <CustomChannelHeader channel={channel} />
+                {/* Use the custom header with welcome message */}
+                <CustomChannelHeader
+                  channel={channel}
+                  showWelcomeMessage={hasWelcomeMessageBeenShown}
+                />
                 <MessageList />
                 <MessageInput placeholder="Type your message here..." />
               </Window>
