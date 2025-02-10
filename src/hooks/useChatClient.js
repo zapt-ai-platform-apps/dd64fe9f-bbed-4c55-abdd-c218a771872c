@@ -11,7 +11,7 @@ const useChatClient = () => {
     const initChat = async () => {
       try {
         const userEmail = session?.user?.email
-        if(!userEmail) throw new Error('Missing userEmail');
+        if(!userEmail) return;
         const response = await fetch('/api/customerSupport', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
