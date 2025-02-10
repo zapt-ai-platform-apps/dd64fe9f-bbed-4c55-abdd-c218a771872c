@@ -10,14 +10,11 @@ import {
 import useChatClient from '../hooks/useChatClient';
 import 'stream-chat-react/dist/css/v2/index.css';
 
-// Custom ChannelHeader for customer support (removes online user count)
+// Fully custom ChannelHeader (no online user count)
 const CustomChannelHeader = ({ channel }) => {
-  console.log('CustomChannelHeader rendered'); // Debugging
   return (
-    <div className="str-chat__header-livestream str-chat__header-customer-support">
-      <div className="str-chat__header-livestream-left">
-        <h3>{channel.data?.name || 'Customer Support'}</h3>
-      </div>
+    <div style={{ padding: '10px', borderBottom: '1px solid #e0e0e0' }}>
+      <h3 style={{ margin: 0 }}>{channel.data?.name || 'Customer Support'}</h3>
     </div>
   );
 };
@@ -29,7 +26,6 @@ const ChatWidget = () => {
 
   useEffect(() => {
     if (isOpen && !hasWelcomeMessageBeenShown) {
-      console.log('Welcome message shown'); // Debugging
       setHasWelcomeMessageBeenShown(true);
     }
   }, [isOpen, hasWelcomeMessageBeenShown]);
@@ -61,17 +57,15 @@ const ChatWidget = () => {
         <div className="chat-container">
           {/* Welcome message outside the chat */}
           {hasWelcomeMessageBeenShown && (
-            <div 
-              style={{
-                backgroundColor: '#f1f1f1',
-                padding: '10px',
-                borderRadius: '8px',
-                marginBottom: '10px',
-                textAlign: 'center',
-                fontStyle: 'italic',
-                color: '#555'
-              }}
-            >
+            <div style={{
+              backgroundColor: '#f1f1f1',
+              padding: '10px',
+              borderRadius: '8px',
+              marginBottom: '10px',
+              textAlign: 'center',
+              fontStyle: 'italic',
+              color: '#555',
+            }}>
               <p>Hello! How can we assist you today?</p>
             </div>
           )}
