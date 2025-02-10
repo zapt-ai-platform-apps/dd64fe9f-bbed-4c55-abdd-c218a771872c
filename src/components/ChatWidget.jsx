@@ -73,10 +73,6 @@ const ChatWidget = () => {
           <Chat client={client}>
             <Channel channel={channel}>
               <Window>
-                {/* Hide the online user count with inline CSS */}
-                <div style={{ display: 'none' }}>
-                  <ChannelHeader />
-                </div>
                 {/* Use the custom header */}
                 <CustomChannelHeader channel={channel} />
                 <MessageList />
