@@ -10,7 +10,7 @@ import {
 import useChatClient from '../hooks/useChatClient';
 import 'stream-chat-react/dist/css/v2/index.css';
 
-// Custom ChannelHeader for customer support
+// Custom ChannelHeader for customer support (removes online user count)
 const CustomChannelHeader = ({ channel }) => {
   return (
     <div className="str-chat__header-livestream str-chat__header-customer-support">
@@ -28,14 +28,10 @@ const ChatWidget = () => {
 
   useEffect(() => {
     if (isOpen && !hasWelcomeMessageBeenShown) {
-      // Add the welcome message only once when the chat is opened
-      channel.sendMessage({
-        text: 'Hello! How can we assist you today?',
-        type: 'system',
-      });
+      // Set the welcome message as shown
       setHasWelcomeMessageBeenShown(true);
     }
-  }, [isOpen, channel, hasWelcomeMessageBeenShown]);
+  }, [isOpen, hasWelcomeMessageBeenShown]);
 
   if (!client || !channel) return null;
 
@@ -61,15 +57,24 @@ const ChatWidget = () => {
         {isOpen ? '✕' : '💬'}
       </button>
       {isOpen && (
-        <Chat client={client}>
-          <Channel channel={channel}>
-            <Window>
-              <ChannelHeader HeaderComponent={CustomChannelHeader} />
-              <MessageList />
-              <MessageInput placeholder="Type your message here..." />
-            </Window>
-          </Channel>
-        </Chat>
+        <div className="chat-container">
+          {/* Welcome message outside the chat */}
+          {!hasWelcomeMessageBeenShown && (
+            <div className="welcome-message">
+              <p>Hello! How can we assist you today?</p>
+            </div>
+          )}
+          {/* Chat window */}
+          <Chat client={client}>
+            <Channel channel={channel}>
+              <Window>
+                <ChannelHeader HeaderComponent={CustomChannelHeader} />
+                <MessageList />
+                <MessageInput placeholder="Type your message here..." />
+              </Window>
+            </Channel>
+          </Chat>
+        </div>
       )}
     </div>
   );
