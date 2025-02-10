@@ -12,6 +12,7 @@ import 'stream-chat-react/dist/css/v2/index.css';
 
 // Custom ChannelHeader for customer support (removes online user count)
 const CustomChannelHeader = ({ channel }) => {
+  console.log('CustomChannelHeader rendered'); // Debugging
   return (
     <div className="str-chat__header-livestream str-chat__header-customer-support">
       <div className="str-chat__header-livestream-left">
@@ -28,7 +29,7 @@ const ChatWidget = () => {
 
   useEffect(() => {
     if (isOpen && !hasWelcomeMessageBeenShown) {
-      // Set the welcome message as shown
+      console.log('Welcome message shown'); // Debugging
       setHasWelcomeMessageBeenShown(true);
     }
   }, [isOpen, hasWelcomeMessageBeenShown]);
@@ -59,8 +60,18 @@ const ChatWidget = () => {
       {isOpen && (
         <div className="chat-container">
           {/* Welcome message outside the chat */}
-          {!hasWelcomeMessageBeenShown && (
-            <div className="welcome-message">
+          {hasWelcomeMessageBeenShown && (
+            <div 
+              style={{
+                backgroundColor: '#f1f1f1',
+                padding: '10px',
+                borderRadius: '8px',
+                marginBottom: '10px',
+                textAlign: 'center',
+                fontStyle: 'italic',
+                color: '#555'
+              }}
+            >
               <p>Hello! How can we assist you today?</p>
             </div>
           )}
