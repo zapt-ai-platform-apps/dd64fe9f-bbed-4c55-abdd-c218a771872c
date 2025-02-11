@@ -11,10 +11,10 @@ import useChatClient from '../hooks/useChatClient';
 import 'stream-chat-react/dist/css/v2/index.css';
 
 // Fully custom ChannelHeader with welcome message
-const CustomChannelHeader = ({ channel }) => {
+const CustomChannelHeader = () => {
   return (
     <div style={{ padding: '10px', borderBottom: '1px solid #e0e0e0' }}>
-      <h3 style={{ margin: 0 }}>{channel.data?.name || 'Customer Support'}</h3>
+      <h3 style={{ margin: 0 }}>Customer Support Chat</h3>
     </div>
   );
 };
@@ -53,7 +53,7 @@ const ChatWidget = () => {
             <Channel channel={channel}>
               <Window>
                 {/* Use the custom header with welcome message */}
-                <CustomChannelHeader channel={channel} />
+                <CustomChannelHeader />
                 <MessageList />
                 <MessageInput placeholder="Type your message here..." />
               </Window>
