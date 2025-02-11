@@ -10,12 +10,12 @@ const useChatClient = () => {
   useEffect(() => {
     const initChat = async () => {
       try {
-        const userEmail = session?.user?.email
-        if(!userEmail) return;
+        const userEmail = session?.user?.email;
+        if (!userEmail) return;
         const response = await fetch('/api/customerSupport', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: userEmail })
+          body: JSON.stringify({ email: userEmail }),
         });
         if (!response.ok) {
           console.error('Failed to fetch customer support data');
@@ -39,7 +39,7 @@ const useChatClient = () => {
     initChat();
 
     return () => {
-      if (client) client.disconnectUser();
+      // Do not disconnect the client here to keep the channel active until explicit sign-out
     };
   }, [session]);
 
