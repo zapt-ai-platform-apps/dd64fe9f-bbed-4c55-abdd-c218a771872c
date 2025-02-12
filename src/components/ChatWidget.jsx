@@ -9,6 +9,7 @@ import {
 import useChatClient from '../hooks/useChatClient';
 import useAuth from '../hooks/useAuth';
 import 'stream-chat-react/dist/css/v2/index.css';
+import LoadingSpinner from './LoadingSpinner';
 
 const CustomChannelHeader = () => {
   return (
@@ -22,6 +23,7 @@ const ChatWidget = () => {
   const { session } = useAuth();
   const { client, channel, connectChat, disconnectChat } = useChatClient();
   const [isOpen, setIsOpen] = useState(false);
+  const [isChatLoading, setIsChatLoading] = useState(false);
 
   if (!session) {
     return null;
@@ -29,8 +31,15 @@ const ChatWidget = () => {
 
   const toggleChat = async () => {
     if (!isOpen) {
-      await connectChat();
-      setIsOpen(true);
+      setIsChatLoading(true);
+      try {
+        await connectChat();
+        setIsOpen(true);
+      } catch (error) {
+        console.error('Error connecting chat:', error);
+      } finally {
+        setIsChatLoading(false);
+      }
     } else {
       setIsOpen(false);
       await disconnectChat();
@@ -55,8 +64,9 @@ const ChatWidget = () => {
           justifyContent: 'center',
           boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
         }}
+        disabled={isChatLoading}
       >
-        {isOpen ? '✕' : '💬'}
+        {isChatLoading ? <LoadingSpinner /> : (isOpen ? '✕' : '💬')}
       </button>
       {isOpen && client && channel && (
         <div className="chat-container">
