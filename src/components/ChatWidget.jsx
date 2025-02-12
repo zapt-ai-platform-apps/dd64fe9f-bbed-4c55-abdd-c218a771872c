@@ -9,15 +9,8 @@ import {
 import useChatClient from '../hooks/useChatClient';
 import useAuth from '../hooks/useAuth';
 import 'stream-chat-react/dist/css/v2/index.css';
-import LoadingSpinner from './LoadingSpinner';
-
-const CustomChannelHeader = () => {
-  return (
-    <div style={{ padding: '10px', borderBottom: '1px solid #e0e0e0' }}>
-      <h3 style={{ margin: 0 }}>Customer Support Chat</h3>
-    </div>
-  );
-};
+import ChatLoading from './ChatLoading';
+import CustomChannelHeader from './CustomChannelHeader';
 
 const ChatWidget = () => {
   const { session } = useAuth();
@@ -46,27 +39,42 @@ const ChatWidget = () => {
     }
   };
 
+  const buttonStyle = isChatLoading
+    ? {
+        backgroundColor: '#007bff',
+        color: 'white',
+        border: 'none',
+        borderRadius: '8px',
+        padding: '8px 16px',
+        fontSize: '16px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+      }
+    : {
+        backgroundColor: '#007bff',
+        color: 'white',
+        border: 'none',
+        borderRadius: '50%',
+        width: '50px',
+        height: '50px',
+        fontSize: '24px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+      };
+
   return (
     <div className="fixed bottom-4 right-4 z-50 chat-widget">
       <button
         onClick={toggleChat}
         className="btn-primary cursor-pointer"
-        style={{
-          backgroundColor: '#007bff',
-          color: 'white',
-          border: 'none',
-          borderRadius: '50%',
-          width: '50px',
-          height: '50px',
-          fontSize: '24px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-        }}
+        style={buttonStyle}
         disabled={isChatLoading}
       >
-        {isChatLoading ? <LoadingSpinner /> : (isOpen ? '✕' : '💬')}
+        {isChatLoading ? <ChatLoading /> : (isOpen ? '✕' : '💬')}
       </button>
       {isOpen && client && channel && (
         <div className="chat-container">
