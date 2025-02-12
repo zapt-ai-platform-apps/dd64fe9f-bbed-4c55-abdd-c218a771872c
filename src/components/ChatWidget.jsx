@@ -5,12 +5,11 @@ import {
   Window,
   MessageList,
   MessageInput,
-  ChannelHeader,
 } from 'stream-chat-react';
 import useChatClient from '../hooks/useChatClient';
+import useAuth from '../hooks/useAuth';
 import 'stream-chat-react/dist/css/v2/index.css';
 
-// Fully custom ChannelHeader with welcome message
 const CustomChannelHeader = () => {
   return (
     <div style={{ padding: '10px', borderBottom: '1px solid #e0e0e0' }}>
@@ -20,15 +19,28 @@ const CustomChannelHeader = () => {
 };
 
 const ChatWidget = () => {
-  const { client, channel } = useChatClient();
+  const { session } = useAuth();
+  const { client, channel, connectChat, disconnectChat } = useChatClient();
   const [isOpen, setIsOpen] = useState(false);
 
-  if (!client || !channel) return null;
+  if (!session) {
+    return null;
+  }
+
+  const toggleChat = async () => {
+    if (!isOpen) {
+      await connectChat();
+      setIsOpen(true);
+    } else {
+      setIsOpen(false);
+      await disconnectChat();
+    }
+  };
 
   return (
     <div className="fixed bottom-4 right-4 z-50 chat-widget">
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={toggleChat}
         className="btn-primary cursor-pointer"
         style={{
           backgroundColor: '#007bff',
@@ -46,13 +58,11 @@ const ChatWidget = () => {
       >
         {isOpen ? '✕' : '💬'}
       </button>
-      {isOpen && (
+      {isOpen && client && channel && (
         <div className="chat-container">
-          {/* Chat window */}
           <Chat client={client}>
             <Channel channel={channel}>
               <Window>
-                {/* Use the custom header with welcome message */}
                 <CustomChannelHeader />
                 <MessageList />
                 <MessageInput placeholder="Type your message here..." />
